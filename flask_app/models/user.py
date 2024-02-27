@@ -61,6 +61,7 @@ class User:
         return users
     
     
+    
     #get total number of doctors
     @classmethod
     def get_total_nr_of_doctors(cls):

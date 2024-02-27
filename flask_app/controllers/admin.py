@@ -5,6 +5,7 @@ import random
 import smtplib
 from flask_app import app
 from flask import render_template, request, session, redirect, flash
+from flask_app.models.application import Application
 from flask_app.models.news import News
 from flask_app.models.user import User
 from flask_bcrypt import Bcrypt        
@@ -32,7 +33,9 @@ def admin():
         return redirect("/")
     
     all_users = User.get_all_users()
-    return render_template("admin.html", user=user, all_users=all_users)  
+    applications = Application.get_all_applications()
+    applications_count = Application.get_applications_count()
+    return render_template("admin.html", user=user, all_users=all_users, applications=applications, applications_count=applications_count)  
 
 
 @app.route("/admin/table")
@@ -52,7 +55,9 @@ def table():
     patients = User.get_all_patients()
     pharmacists = User.get_all_pharmacists()
     news = News.get_all_news()
-    return render_template("table.html",user=user, admins=admins, doctors=doctors, nurses=nurses, patients=patients, pharmacists=pharmacists, news=news)
+    application = Application.total_applications()
+    applications_count = Application.get_applications_count()
+    return render_template("table.html",user=user, admins=admins, doctors=doctors, nurses=nurses, patients=patients, pharmacists=pharmacists, news=news, application=application ,applications_count=applications_count)
 
 
 #register new user
@@ -101,6 +106,8 @@ def register_process():
         "password": bcrypt.generate_password_hash(password)
     }
     User.create_user(data)
+    application = Application.get_application_by_email({"email": request.form["email"]})
+    Application.update_checked({"id" : application['id']})
     
     LOGIN = ADMINEMAIL
     TOADDRS  = request.form['email']

@@ -2,6 +2,7 @@ import datetime
 import os
 from flask_app import app
 from flask import render_template, request, session, redirect, flash
+from flask_app.models.news import News
 from flask_app.models.user import User
 from flask_bcrypt import Bcrypt        
 from werkzeug.utils import secure_filename
@@ -18,7 +19,11 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def dashboard():
     if "user_id" in session:
         return redirect("/")
-    return render_template("index.html")
+    
+    doctor = User.get_total_nr_of_doctors()
+    patient = User.get_total_nr_of_patients()
+    news = News.get_all_news()
+    return render_template("index.html" , doctor=doctor, patient=patient , news=news)
 
 
 @app.route("/check")
@@ -125,6 +130,8 @@ def profile_update():
 #if a route is not found, it will redirect to the login page
 @app.errorhandler(404)
 def page_not_found(e):
+    if "user_id" not in session:
+        return redirect("/check")
     data = {
         "id": session['user_id']
     }

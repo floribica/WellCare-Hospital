@@ -184,3 +184,10 @@ input[type="submit"]:active
 .form{
   width: 100%;
 }
+
+.form .inputBox
+{
+  position: relative;
+  width: 100%;
+}
+

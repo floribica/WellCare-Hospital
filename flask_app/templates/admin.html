@@ -31,12 +31,10 @@
                 </button>
                 <a class="navbar-brand" href="/">WellCare Hospital</a>
             </div>
-
             <div class="header-right">
 
-                <a href="/" class="btn btn-info" title="New Message"><b>30 </b><i
-                        class="fa fa-envelope-o fa-2x"></i></a>
-                <a href="/" class="btn btn-primary" title="New Task"><b>40 </b><i class="fa fa-bars fa-2x"></i></a>
+                <a href="#notifications" class="btn btn-info" title="New Message"><b>{{applications_count.total}} </b><i
+                        class="fa fa-envelope-o fa-2x"></i> </a>
                 <a href="/logout" class="btn btn-danger" title="Logout"><i
                         class="fa fa-exclamation-circle fa-2x"></i></a>
 
@@ -202,7 +200,7 @@
 
                     </div>
                     <div class="col-md-4">
-                        <div class="panel panel-info">
+                        <div class="panel panel-info" id="notifications">
                             <div class="panel-heading">
                                 <i class="fa fa-bell fa-fw"></i>Notifications Panel
                             </div>
@@ -210,55 +208,15 @@
                             <div class="panel-body">
                                 <div class="list-group">
 
+                                    {%for app in applications%}
                                     <a href="#" class="list-group-item">
-                                        <i class="fa fa-twitter fa-fw"></i>3 New Followers
-                                        <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                                        </span>
+                                        <i class="fa fa-envelope fa-fw"></i><span class="text-primary fw-bold">{{app.fullName}}</span> need an account
+                                        <span class="pull-right text-muted small">
+                                            <em id="relativeTime">{{ app.created_at }}</em>
+                                        </span>                                
                                     </a>
-                                    <a href="#" class="list-group-item">
-                                        <i class="fa fa-envelope fa-fw"></i>Message Sent
-                                        <span class="pull-right text-muted small"><em>27 minutes ago</em>
-                                        </span>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <i class="fa fa-tasks fa-fw"></i>New Task
-                                        <span class="pull-right text-muted small"><em>43 minutes ago</em>
-                                        </span>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <i class="fa fa-upload fa-fw"></i>Server Rebooted
-                                        <span class="pull-right text-muted small"><em>11:32 AM</em>
-                                        </span>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <i class="fa fa-bolt fa-fw"></i>Server Crashed!
-                                        <span class="pull-right text-muted small"><em>11:13 AM</em>
-                                        </span>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <i class="fa fa-warning fa-fw"></i>Server Not Responding
-                                        <span class="pull-right text-muted small"><em>10:57 AM</em>
-                                        </span>
-                                    </a>
-
-                                    <a href="#" class="list-group-item">
-                                        <i class="fa fa-bolt fa-fw"></i>Server Crashed!
-                                        <span class="pull-right text-muted small"><em>11:13 AM</em>
-                                        </span>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <i class="fa fa-warning fa-fw"></i>Server Not Responding
-                                        <span class="pull-right text-muted small"><em>10:57 AM</em>
-                                        </span>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <i class="fa fa-shopping-cart fa-fw"></i>New Order Placed
-                                        <span class="pull-right text-muted small"><em>9:49 AM</em>
-                                        </span>
-                                    </a>
+                                    {%endfor%}
                                 </div>
-                                <!-- /.list-group -->
-                                <a href="#" class="btn btn-info btn-block">View All Alerts</a>
                             </div>
 
                         </div>
@@ -339,6 +297,18 @@
     <script src="../static/assets/js/jquery.metisMenu.js"></script>
     <!-- CUSTOM SCRIPTS -->
     <script src="../static/assets/js/custom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script>
+        // Get the timestamp from the element content
+        var timestamp = document.getElementById('relativeTime').textContent;
+        
+        // Calculate the relative time using Moment.js
+        var relativeTime = moment(timestamp).fromNow();
+        
+        // Update the content of the element with the relative time
+        document.getElementById('relativeTime').textContent = relativeTime;
+    </script>
+    
 
 
 
