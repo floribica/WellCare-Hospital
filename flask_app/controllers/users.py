@@ -146,8 +146,7 @@ def page_not_found(e):
         return render_template('404_pharmacist.html')
     elif user['role'] == "A555":
         return render_template('404.html')
-    else:
-        return render_template('/')
+    return render_template('/')
     
     
 @app.route("/add/photo", methods=["POST"])

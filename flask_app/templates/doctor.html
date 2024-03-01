@@ -217,30 +217,30 @@
                 <h1>What Say Our Patients!</h1>
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+                {% for testimonial in testimonials %}
                 <div class="testimonial-item text-center">
-                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="../static/img/testimonial-1.jpg" style="width: 100px; height: 100px;">
+                    {% if testimonial.image != None %}
+                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="../static/img/{{testimonial.image}}" style="width: 100px; height: 100px;">
+                    {% else %}
+                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="../static/img/profilephoto.webp" style="width: 100px; height: 100px;">
+                    {% endif %}
                     <div class="testimonial-text rounded text-center p-4">
-                        <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea clita.</p>
-                        <h5 class="mb-1">Patient Name</h5>
-                        <span class="fst-italic">Profession</span>
+                        <p>{{testimonial.description}}</p>
+                        <a href="/profile/{{testimonial.user_id}}"><h5 class="mb-1">{{testimonial.fullName}}</h5></a>
+                        {% if testimonial.role == 'A555'%}
+                        <span class="fst-italic">Administrator</span>
+                        {%elif testimonial.role == 'D435'%}
+                        <span class="fst-italic">Doctor</span>
+                        {%elif testimonial.role == 'PH528'%}
+                        <span class="fst-italic">Pharmacist</span>
+                        {%elif testimonial.role == 'N792'%}
+                        <span class="fst-italic">Nurse</span>
+                        {%elif testimonial.role == 'P493'%}
+                        <span class="fst-italic">Patient</span>
+                        {%endif%}
                     </div>
                 </div>
-                <div class="testimonial-item text-center">
-                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="../static/img/testimonial-2.jpg" style="width: 100px; height: 100px;">
-                    <div class="testimonial-text rounded text-center p-4">
-                        <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea clita.</p>
-                        <h5 class="mb-1">Patient Name</h5>
-                        <span class="fst-italic">Profession</span>
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="../static/img/testimonial-3.jpg" style="width: 100px; height: 100px;">
-                    <div class="testimonial-text rounded text-center p-4">
-                        <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea clita.</p>
-                        <h5 class="mb-1">Patient Name</h5>
-                        <span class="fst-italic">Profession</span>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

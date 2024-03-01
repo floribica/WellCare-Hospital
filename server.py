@@ -1,5 +1,5 @@
 from flask_app import app
-from flask_app.controllers import users,admin,doctors,nurses,shifts,patients,applications
+from flask_app.controllers import users,admin,doctors,nurses,shifts,patients,applications,testimonials
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0', port=5050)

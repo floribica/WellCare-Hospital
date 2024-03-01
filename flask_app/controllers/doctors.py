@@ -2,6 +2,8 @@ from flask_app import app
 from flask import render_template, request, session, redirect, flash
 from flask_app.models.user import User
 from flask_app.models.news import News
+from flask_app.models.testimonial import Testimonial
+
 from flask_app.models.shift import Shift
 
 
@@ -21,7 +23,8 @@ def doctor():
     patients = User.get_total_nr_of_patients()
     news = News.get_all_news()
     mydoctor = User.get_doctor()
-    return render_template("doctor.html", user=user, doctor=doctor , staff=staff, patients=patients, news=news, mydoctor=mydoctor)  
+    testimonials = Testimonial.get_all_testimonials()
+    return render_template("doctor.html", user=user, doctor=doctor , staff=staff, patients=patients, news=news, mydoctor=mydoctor, testimonials=testimonials)  
 
 @app.route("/profile")
 def profile():

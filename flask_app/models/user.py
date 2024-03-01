@@ -96,10 +96,10 @@ class User:
         return patients
     
     
-    #get only 4 doctors full name image and position
+    #get only 4 doctors 
     @classmethod
     def get_doctor(cls):
-        query = "SELECT users.id, users.fullName,users.image, users.position FROM users WHERE users.role = 'D435' LIMIT 4;"
+        query = "SELECT * FROM users WHERE role = 'D435' LIMIT 4;"
         results = connectToMySQL(cls.db_name).query_db(query)
         doctors = []
         for doctor in results:
