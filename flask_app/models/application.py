@@ -52,7 +52,7 @@ class Application:
         results = connectToMySQL(cls.db_name).query_db(query, data)
         application = None
         if results:
-            application = cls(results[0])
+            application = results[0]
         return application
     
     @classmethod

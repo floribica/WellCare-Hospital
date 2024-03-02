@@ -107,7 +107,12 @@ def register_process():
     }
     User.create_user(data)
     application = Application.get_application_by_email({"email": request.form["email"]})
-    Application.update_checked({"id" : application['id']})
+    print(application)
+    print("////////////////////////////////////")
+    data2 = {
+        "id": application['id']
+    }
+    Application.update_checked(data2)
     
     LOGIN = ADMINEMAIL
     TOADDRS  = request.form['email']
