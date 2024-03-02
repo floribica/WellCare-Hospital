@@ -60,7 +60,7 @@ def table():
     return render_template("table.html",user=user, admins=admins, doctors=doctors, nurses=nurses, patients=patients, pharmacists=pharmacists, news=news, application=application ,applications_count=applications_count)
 
 
-#register new user
+#register new user manually
 @app.route("/register")
 def register():
     if "user_id" not in session:
@@ -69,6 +69,18 @@ def register():
     if user['role'] != "A555":
         return redirect("/")
     return render_template("register.html")
+
+#register new user automatically
+@app.route("/register/<int:id>")
+def register_auto(id):
+    if "user_id" not in session:
+        return redirect("/")
+    user = User.get_user_by_id({"id": session['user_id']})
+    if user['role'] != "A555":
+        return redirect("/")
+    app_user = Application.get_application_by_id({"id": id})
+    return render_template("registerAuto.html", app_user=app_user)
+    
 
 @app.route("/register/process", methods=["POST"])
 def register_process():
@@ -107,8 +119,6 @@ def register_process():
     }
     User.create_user(data)
     application = Application.get_application_by_email({"email": request.form["email"]})
-    print(application)
-    print("////////////////////////////////////")
     data2 = {
         "id": application['id']
     }
@@ -130,4 +140,6 @@ def register_process():
     server.sendmail(SENDER, TOADDRS, msg)
     server.quit()
     return redirect("/")
+
+
 

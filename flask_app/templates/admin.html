@@ -209,7 +209,7 @@
                                 <div class="list-group">
 
                                     {%for app in applications%}
-                                    <a href="#" class="list-group-item">
+                                    <a href="/register/{{app.id}}" class="list-group-item">
                                         <i class="fa fa-envelope fa-fw"></i><span class="text-primary fw-bold">{{app.fullName}}</span> need an account
                                         <span class="pull-right text-muted small">
                                             <em id="relativeTime">{{ app.created_at }}</em>

@@ -60,6 +60,15 @@ class Application:
         query = "UPDATE applications SET checked = 1 WHERE id = %(id)s;"
         return connectToMySQL(cls.db_name).query_db(query, data)
     
+    @classmethod
+    def get_application_by_id(cls, data):
+        query = "SELECT * FROM applications WHERE id = %(id)s;"
+        results = connectToMySQL(cls.db_name).query_db(query, data)
+        application = None
+        if results:
+            application = results[0]
+        return application
+    
     @staticmethod
     def validate_application(data):
         is_valid = True
