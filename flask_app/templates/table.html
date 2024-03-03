@@ -70,7 +70,7 @@
 
                     
                     <li>
-                        <a class="active-menu"  href="/admin/table"><i class="fa fa-table "></i>All Data </a>
+                        <a class="active-menu"  href="/table"><i class="fa fa-table "></i>All Data </a>
 
                     </li>
                     <li>
@@ -96,15 +96,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-newspaper-o "></i>News <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="/admin/admin"><i class="fa fa-file-text"></i>Show News</a>
-                            </li>
-                            <li>
-                                <a href="/admin/doctor"><i class="fa fa-plus"></i>Create News</a>
-                            </li>
-                        </ul>
+                        <a href="/shownews"><i class="fa fa-newspaper-o"></i>News</a>
                     </li>
                     <li>
                         <a href="/search"><i class="fa fa-search "></i>Search</a>
@@ -155,9 +147,11 @@
                                                 <td>{{admin.email}}</td>
                                                 <td>{{admin.username}}</td>
                                                 <td>
-                                                    <a href="/admin/edit/{{admin.id}}" class="btn btn-primary btn-xs"><i
+                                                    <a href="/view/{{admin.id}}" class="btn btn-success btn-xs"><i
+                                                        class="fa fa-eye"></i></a>
+                                                    <a href="/edit/{{admin.id}}" class="btn btn-primary btn-xs"><i
                                                             class="fa fa-pencil"></i></a>
-                                                    <a href="/admin/delete/{{admin.id}}"
+                                                    <a href="/delete/{{admin.id}}"
                                                         class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></a>
                                             </tr>
                                             {%endfor%}
@@ -194,9 +188,11 @@
                                                 <td>{{doctor.email}}</td>
                                                 <td>{{doctor.username}}</td>
                                                 <td>
-                                                    <a href="/admin/edit/{{doctor.id}}"
+                                                    <a href="/view/{{doctor.id}}" class="btn btn-success btn-xs"><i
+                                                        class="fa fa-eye"></i></a>
+                                                    <a href="/edit/{{doctor.id}}"
                                                         class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
-                                                    <a href="/admin/delete/{{doctor.id}}"
+                                                    <a href="/delete/{{doctor.id}}"
                                                         class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></a>
                                                 </td>
                                             </tr>
@@ -237,9 +233,11 @@
                                                 <td>{{nurse.email}}</td>
                                                 <td>{{nurse.username}}</td>
                                                 <td>
-                                                    <a href="/admin/edit/{{nurse.id}}" class="btn btn-primary btn-xs"><i
+                                                    <a href="/view/{{nurse.id}}" class="btn btn-success btn-xs"><i
+                                                        class="fa fa-eye"></i></a>
+                                                    <a href="/edit/{{nurse.id}}" class="btn btn-primary btn-xs"><i
                                                             class="fa fa-pencil"></i></a>
-                                                    <a href="/admin/delete/{{nurse.id}}"
+                                                    <a href="/delete/{{nurse.id}}"
                                                         class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></a>
                                                 </td>
                                             </tr>
@@ -277,9 +275,11 @@
                                                 <td>{{pharmacist.email}}</td>
                                                 <td>{{pharmacist.username}}</td>
                                                 <td>
-                                                    <a href="/admin/edit/{{pharmacist.id}}"
+                                                    <a href="/view/{{pharmacist.id}}" class="btn btn-success btn-xs"><i
+                                                        class="fa fa-eye"></i></a>
+                                                    <a href="/edit/{{pharmacist.id}}"
                                                         class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
-                                                    <a href="/admin/delete/{{pharmacist.id}}"
+                                                    <a href="/delete/{{pharmacist.id}}"
                                                         class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></a>
                                                 </td>
                                             </tr>
@@ -320,9 +320,11 @@
                                                 <td>{{patient.email}}</td>
                                                 <td>{{patient.username}}</td>
                                                 <td>
-                                                    <a href="/admin/edit/{{patient.id}}" class="btn btn-primary btn-xs"><i
+                                                    <a href="/view/{{patient.id}}" class="btn btn-success btn-xs"><i
+                                                        class="fa fa-eye"></i></a>
+                                                    <a href="/edit/{{patient.id}}" class="btn btn-primary btn-xs"><i
                                                             class="fa fa-pencil"></i></a>
-                                                    <a href="/admin/delete/{{patient.id}}"
+                                                    <a href="/delete/{{patient.id}}"
                                                         class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></a>
                                                 </td>
                                             </tr>
@@ -358,9 +360,11 @@
                                                 <td>{{news.title}}</td>
                                                 <td>{{news.description}}</td>
                                                 <td>
-                                                    <a href="/admin/edit/{{news.id}}"
+                                                    <a href="/viewnews/{{news.id}}" class="btn btn-success btn-xs"><i
+                                                        class="fa fa-eye"></i></a>
+                                                    <a href="/editnews/{{news.id}}"
                                                         class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
-                                                    <a href="/admin/delete/{{news.id}}"
+                                                    <a href="/deletenews/{{news.id}}"
                                                         class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></a>
                                                 </td>
                                             </tr>
@@ -403,9 +407,11 @@
                                                 <td>{{app.role}}</td>
                                                 <td>{{app.checked}}</td>
                                                 <td>
-                                                    <a href="/admin/edit/{{app.id}}" class="btn btn-primary btn-xs"><i
+                                                    <a href="/viewapp/{{app.id}}" class="btn btn-success btn-xs"><i
+                                                        class="fa fa-eye"></i></a>
+                                                    <a href="/editapp/{{app.id}}" class="btn btn-primary btn-xs"><i
                                                             class="fa fa-pencil"></i></a>
-                                                    <a href="/admin/delete/{{app.id}}"
+                                                    <a href="/deleteapp/{{app.id}}"
                                                         class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></a>
                                                 </td>
                                             </tr>

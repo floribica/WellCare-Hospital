@@ -39,7 +39,7 @@ class Application:
     #get applications count
     @classmethod
     def get_applications_count(cls):
-        query = "SELECT COUNT(*) as total FROM applications;"
+        query = "SELECT COUNT(*) as total FROM applications WHERE checked = 0;"
         results = connectToMySQL(cls.db_name).query_db(query)
         application = 0
         if results:

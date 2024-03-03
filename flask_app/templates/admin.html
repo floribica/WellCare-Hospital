@@ -17,6 +17,7 @@
     <link href="../static/assets/css/custom.css" rel="stylesheet" />
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    
 </head>
 
 <body>
@@ -65,9 +66,9 @@
                     <li>
                         <a class="active-menu" href="/"><i class="fa fa-dashboard "></i>Dashboard</a>
                     </li>
-                    
 
-                    
+
+
                     <li>
                         <a href="/admin/table"><i class="fa fa-table "></i>All Data </a>
 
@@ -95,15 +96,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-newspaper-o "></i>News <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="/admin/admin"><i class="fa fa-file-text"></i>Show News</a>
-                            </li>
-                            <li>
-                                <a href="/admin/doctor"><i class="fa fa-plus"></i>Create News</a>
-                            </li>
-                        </ul>
+                        <a href="/shownews"><i class="fa fa-newspaper-o"></i>News</a>
                     </li>
                     <li>
                         <a href="/search"><i class="fa fa-search "></i>Search</a>
@@ -130,33 +123,25 @@
                 <!-- /. ROW  -->
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="main-box mb-red">
-                            <a href="#">
-                                <i class="fa fa-bolt fa-5x"></i>
-                                <h5>Zero Issues</h5>
-                            </a>
+                        <div class=" main-box bg-info">
+                            <canvas id="myChart1" width="400" height="400"></canvas>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="main-box mb-dull">
-                            <a href="#">
-                                <i class="fa fa-plug fa-5x"></i>
-                                <h5>40 Task In Check</h5>
-                            </a>
+                        <div class="main-box bg-success ">
+                            <canvas id="myChart2" width="400" height="400"></canvas>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="main-box mb-pink">
-                            <a href="#">
-                                <i class="fa fa-dollar fa-5x"></i>
-                                <h5>200K Pending</h5>
-                            </a>
+                        <div class="main-box bg-danger">
+                            <canvas id="myChart3" width="400" height="400"></canvas>
                         </div>
                     </div>
 
                 </div>
                 <!-- /. ROW  -->
 
+                <hr>
                 <div class="row">
 
                     <div class="col-md-8">
@@ -182,11 +167,11 @@
                                         <td>{{usr.username}}</td>
                                         <td>{{usr.role}}</td>
                                         <td>
-                                            <a href="/admin/view/{{usr.id}}" class="btn btn-success btn-xs"><i
+                                            <a href="/view/{{usr.id}}" class="btn btn-success btn-xs"><i
                                                     class="fa fa-eye"></i></a>
-                                            <a href="/admin/edit/{{usr.id}}" class="btn btn-primary btn-xs"><i
+                                            <a href="/edit/{{usr.id}}" class="btn btn-primary btn-xs"><i
                                                     class="fa fa-pencil"></i></a>
-                                            <a href="/admin/delete/{{usr.id}}" class="btn btn-danger btn-xs"><i
+                                            <a href="delete/{{usr.id}}" class="btn btn-danger btn-xs"><i
                                                     class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>
@@ -210,10 +195,11 @@
 
                                     {%for app in applications%}
                                     <a href="/register/{{app.id}}" class="list-group-item">
-                                        <i class="fa fa-envelope fa-fw"></i><span class="text-primary fw-bold">{{app.fullName}}</span> need an account
+                                        <i class="fa fa-envelope fa-fw"></i><span
+                                            class="text-primary fw-bold">{{app.fullName}}</span> need an account
                                         <span class="pull-right text-muted small">
-                                            <em id="relativeTime">{{ app.created_at }}</em>
-                                        </span>                                
+                                            <em class="relativeTime">{{ app.created_at }}</em>
+                                        </span>
                                     </a>
                                     {%endfor%}
                                 </div>
@@ -223,57 +209,6 @@
                     </div>
                 </div>
                 <!--/.Row-->
-                <hr />
-                <div class="row" style="padding-bottom: 100px;">
-                    <div class="col-md-6">
-                        <div id="comments-sec">
-                            <h4><strong>Compose Support Ticket </strong></h4>
-                            <hr />
-
-
-                            <div class="form-group  ">
-                                <label>Please Write a Subject Line</label>
-                                <input type="text" class="form-control" required="required"
-                                    placeholder="Enter Subject Of Ticket" />
-                            </div>
-                            <div class="form-group ">
-                                <label>Please Enter Issue</label>
-                                <textarea class="form-control" rows="8"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-success">Compose &amp; Send Ticket</button>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-md-6">
-                        <div class="panel panel-back noti-box">
-                            <span class="icon-box bg-color-black">
-                                <i class="fa fa-bicycle"></i>
-                            </span>
-                            <div class="text-box">
-                                <p class="main-text">52 Important Issues to Fix </p>
-                                <p>Please fix these issues to work smooth</p>
-                                <p>Time Left: 30 mins</p>
-                                <hr />
-                                <p>
-                                    <span class=" color-bottom-txt"><i class="fa fa-edit"></i>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit gthn.
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit gthn.
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit gthn.
-
-                                    </span>
-
-
-                                </p>
-                                <hr />
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit gthn.
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit gthn.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--/.ROW-->
 
             </div>
             <!-- /. PAGE INNER  -->
@@ -298,17 +233,22 @@
     <!-- CUSTOM SCRIPTS -->
     <script src="../static/assets/js/custom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>
+
     <script>
-        // Get the timestamp from the element content
-        var timestamp = document.getElementById('relativeTime').textContent;
-        
-        // Calculate the relative time using Moment.js
-        var relativeTime = moment(timestamp).fromNow();
-        
-        // Update the content of the element with the relative time
-        document.getElementById('relativeTime').textContent = relativeTime;
+        moment.locale(''); // Set locale to English
+
+        document.querySelectorAll('.relativeTime').forEach(e => {
+            e.innerHTML = moment(e.innerHTML).fromNow();
+        });
     </script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="../static/js/admin.js"></script>
+
+
+
+
 
 
 

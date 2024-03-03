@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WellCare</title>
+    <link rel="icon" href="../static/index/img/favicon.png">
+
+    <link rel="stylesheet" href="../static/css/view.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card cart">
+          <label class="title">{{user.fullName}}</label>
+          <hr>
+          <div class="steps">
+            <div class="step">
+              <div>
+                <span>Username: {{user.username}}</span>
+                <p>Email: {{user.email}}</p>
+                <p>Created At:{{user.created_at}} | Update At: {{user.update_at}}</p>
+              </div>
+              <hr>
+              <div>
+                <span>More Info</span>
+                <p>Gender: {{user.gender}}</p>
+                <p>Birthday: {{user.birthday}}</p>
+                <p>Age: {{user.age}}</p>
+                <p>Address: {{user.city}}</p>
+                <p>Phone: {{user.tel}}</p>
+              </div>
+              <hr>
+              <div>
+              <span>Education</span>
+                <p>Degree: {{user.degree}}</p>
+                <p>Specialized In: {{user.position}}</p>
+            </div>
+              <div class="payments">
+                <span>Short Info</span>
+                <p>{{user.short_info}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card back">
+          <div class="footer">
+            <a href="/" class="back-btn">Go Back</a>
+          </div>
+        </div>
+      </div>
+</body>
+</html>

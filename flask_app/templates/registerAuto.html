@@ -147,10 +147,12 @@
 
     </section>
 
+
+
     <script>
-        // Get the value to check
-        var roleValue = "{{app_user.role}}"; // This should be dynamically set based on your backend logic
-    
+         // Get the value to check
+        var roleValue = "{{ app_user.role }}"; // Assuming role is dynamically set
+            
         if (roleValue === "doctor") {
             roleValue = "d"; // Set role value to "D456" if role is "doctor"
         }    
@@ -190,8 +192,6 @@
 
         // Set the value of the username input to the result
         document.getElementsByName('username')[0].value = result;
-
-
     </script>
 
 </body>

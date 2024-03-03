@@ -94,4 +94,17 @@
     });
 }(jQuery));
 
+/*
+function reloadContent() {
+    // Perform AJAX request to reload the admin page
+    $.ajax({
+        url: '/admin',
+        type: 'GET',
+        success: function(response) {
+            $('#wrapper').html(response);
+        }
+    });
+}
+*/
+
 

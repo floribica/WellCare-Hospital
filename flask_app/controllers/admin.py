@@ -79,7 +79,8 @@ def register_auto(id):
     if user['role'] != "A555":
         return redirect("/")
     app_user = Application.get_application_by_id({"id": id})
-    return render_template("registerAuto.html", app_user=app_user)
+    all_users = User.get_all_users()
+    return render_template("registerAuto.html", app_user=app_user, all_users=all_users)
     
 
 @app.route("/register/process", methods=["POST"])
@@ -143,3 +144,86 @@ def register_process():
 
 
 
+#view user info
+@app.route("/view/<int:id>")
+def view(id):
+    if "user_id" not in session:
+        return redirect("/check")
+    data = {
+        "id": session['user_id']
+    }
+    user=User.get_user_by_id(data)
+    if user['role'] != "A555":
+        return redirect("/")
+    data = {
+        "id": id
+    }
+    user = User.get_user_by_id(data)
+    return render_template("view.html", user=user)
+
+#edit user info
+@app.route("/edit/<int:id>")
+def edit(id):
+    if "user_id" not in session:
+        return redirect("/check")
+    data = {
+        "id": session['user_id']
+    }
+    user=User.get_user_by_id(data)
+    if user['role'] != "A555":
+        return redirect("/")
+    data = {
+        "id": id
+    }
+    user = User.get_user_by_id(data)
+    return render_template("edit.html", user=user)
+
+@app.route("/edit/process/<int:id>", methods=["POST"])
+def edit_process(id):
+    if "user_id" not in session:
+        return redirect("/check")
+    user = User.get_user_by_id({"id": session['user_id']})
+    if user['role'] != "A555":
+        return redirect("/")
+    if not User.validate_user(request.form):
+        return redirect(request.referrer)
+    data = {
+        "id": id,
+        "fullName": request.form["fullName"],
+        "username": request.form["username"],
+        "email": request.form["email"],
+        "role": request.form["role"],
+    }
+    User.edit_user(data)
+    return redirect("/")
+
+#delete user
+@app.route("/delete/<int:id>")
+def delete(id):
+    if "user_id" not in session:
+        return redirect("/check")
+    user = User.get_user_by_id({"id": session['user_id']})
+    if user['role'] != "A555":
+        return redirect("/")
+    data = {
+        "id": id
+    }
+    User.delete_user(data)
+    return redirect("/")
+
+
+
+#show all news
+@app.route("/shownews")
+def shownews():
+    if "user_id" not in session:
+        return redirect("/check")
+    data = {
+        "id": session['user_id']
+    }
+    user=User.get_user_by_id(data)
+    if user['role'] != "A555":
+        return redirect("/")
+    news = News.get_all_news()
+    applications_count = Application.get_applications_count()
+    return render_template("shownews.html", user=user, news=news, applications_count=applications_count)

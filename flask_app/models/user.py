@@ -149,6 +149,18 @@ class User:
             admins.append(admin)
         return admins
     
+    #edit user as admin
+    @classmethod
+    def edit_user(cls, data):
+        query = "UPDATE users SET fullName = %(fullName)s, username = %(username)s, email = %(email)s, role = %(role)s WHERE id = %(id)s;"
+        return connectToMySQL(cls.db_name).query_db(query, data)
+    
+    #delete user as admin
+    @classmethod
+    def delete_user(cls, data):
+        query = "DELETE FROM users WHERE id = %(id)s;"
+        return connectToMySQL(cls.db_name).query_db(query, data)
+    
     #update user details
     @classmethod
     def update_user_info(cls, data):
