@@ -17,6 +17,7 @@
     <link href="../static/assets/css/custom.css" rel="stylesheet" />
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    
 </head>
 
 <body>
@@ -78,14 +79,14 @@
                             Create New User</a>
                     </li>
 
-                    <li>
-                        <a href="#"><i class="fa fa-group "></i>Users <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="/admin/admin"><i class="fa fa-angellist"></i>Admin</a>
-                            </li>
-                            <li>
-                                <a href="/admin/doctor"><i class="fa fa-user-md "></i>Doctor</a>
+                        <li>
+                            <a href="#"><i class="fa fa-group "></i>Users <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/admin"><i class="fa fa-angellist"></i>Admin</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/doctor"><i class="fa fa-user-md "></i>Doctor</a>
                             </li>
                             <li>
                                 <a href="/admin/pharmacist"><i class="fa fa-plus-square "></i>Pharmacist</a>
@@ -162,6 +163,31 @@
                             </div>
                         </div>
                         <!-- End  News Table  -->
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+                <div class="row">
+                    <div class="col-md-12 m-5">
+                        <form style="border: 2px dotted #121f1a; padding:2% 5%" action="/news/new" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                              <label for="title" class="form-label">Title</label>
+                              <input type="text" name="title" class="form-control" id="title" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                              <label for="description" class="form-label">Description</label>
+                              <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
+                            </div>
+                            <div class="mb-3">
+                              <label for="link" class="form-label">Link</label>
+                              <input type="text" name="link" class="form-control" id="link">
+                            </div>
+                            <div class="mb-3">
+                              <label for="image" class="form-label">Image</label>
+                              <input type="file" name="image" class="form-control" id="image">
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="margin: 2% 0;">Submit</button>
+                          </form>
+
                     </div>
                 </div>
                 <!-- /. ROW  -->

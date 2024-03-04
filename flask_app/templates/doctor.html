@@ -180,9 +180,9 @@
                     <div class="team-item position-relative rounded overflow-hidden">
                         <div class="overflow-hidden">
                             {% if mydoctor.image == None %}
-                            <img class="img-fluid" src="../static/img/profilephoto.webp" alt="error">
+                            <img class="img-fluid" src="../static/img/profilephoto.webp" alt="error" style="object-fit: cover;">
                             {% else %}
-                            <img class="img-fluid" id="img-fix" src="../static/img/{{mydoctor.image}}" alt="error">
+                            <img class="img-fluid" id="img-fix" src="../static/img/{{mydoctor.image}}" alt="error" style="object-fit: cover;">
                             {% endif %}
                         </div>
                         <div class="team-text bg-light text-center p-4">

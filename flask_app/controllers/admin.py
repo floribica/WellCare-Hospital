@@ -118,11 +118,13 @@ def register_process():
         "role": role,
         "password": bcrypt.generate_password_hash(password)
     }
-    User.create_user(data)
     application = Application.get_application_by_email({"email": request.form["email"]})
+    User.create_user(data)
+    
     data2 = {
         "id": application['id']
     }
+    
     Application.update_checked(data2)
     
     LOGIN = ADMINEMAIL
@@ -140,6 +142,8 @@ def register_process():
     server.login(LOGIN, PASSWORD)
     server.sendmail(SENDER, TOADDRS, msg)
     server.quit()
+    
+    Application.update_checked(data2)
     return redirect("/")
 
 

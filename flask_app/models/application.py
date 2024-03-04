@@ -48,7 +48,7 @@ class Application:
     
     @classmethod
     def get_application_by_email (cls, data):
-        query = "SELECT * FROM applications WHERE email = %(email)s;"
+        query = "SELECT * FROM applications WHERE email = %(email)s and checked = 0;"
         results = connectToMySQL(cls.db_name).query_db(query, data)
         application = None
         if results:
