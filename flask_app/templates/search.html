@@ -76,16 +76,18 @@
                     takimata ipsum sit est. Ipsum ea voluptua ipsum sit justo</h5>
             </div>
             <div class="mx-auto" style="width: 100%; max-width: 600px;">
+                <form action="/finddoctor" method="post">
                 <div class="input-group">
-                    <select class="form-select border-primary w-25" style="height: 60px;">
-                        <option selected>Department</option>
-                        <option value="1">Department 1</option>
+                    <select class="form-select border-primary w-25" style="height: 60px;" name="position">
+                        <option selected value="all">all</option>
+                        <option value="cosmetic, plastic & reconstructive surgery">cosmetic, plastic & reconstructive surgery</option>
                         <option value="2">Department 2</option>
                         <option value="3">Department 3</option>
                     </select>
-                    <input type="text" class="form-control border-primary w-50" placeholder="Keyword">
+                    <input type="text" name="fullName" class="form-control border-primary w-50" placeholder="Keyword">
                     <button class="btn btn-dark border-0 w-25">Search</button>
                 </div>
+            </form>
             </div>
         </div>
     </div>

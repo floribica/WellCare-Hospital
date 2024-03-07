@@ -41,7 +41,7 @@ def buy_medicine():
     return render_template("buy.html", user=user)
 
 
-@app.route("/finddoctor")
+@app.route("/finddoctor", methods = ['GET','POST'])
 def finddoctor():
     if "user_id" not in session:
         return redirect("/check")
@@ -50,9 +50,51 @@ def finddoctor():
     if user["role"] != "P493":
         return redirect("/check")
     
-    doctors = User.get_doctor()
-
-    return render_template("search.html" , user=user, doctors=doctors)
+    
+    if request.method == 'GET':
+        doctors = User.get_doctor()
+        return render_template("search.html" , user=user, doctors=doctors)
+    
+    if request.method == 'POST':
+        if not request.form['position'] or request.form['position'] == 'all':
+            position = 'all'
+        else:
+            position = request.form['position']
+        if not request.form['fullName']:
+            fullName = 'all'
+        else:
+            fullName = request.form['fullName']+ '%'
+            
+            
+        if fullName == 'all' and position =='all':
+            doctors = User.get_doctor()
+        
+        elif fullName =='all' and position != 'all':
+            data = {
+                'position' : position
+            }
+            print(data)
+            print("///////////////////////////////")
+            doctors = User.get_doctor_by_position(data)
+            
+        elif fullName !='all' and position == 'all':
+            data = {
+                'fullName' : fullName
+            }
+            doctors = User.get_doctor_by_fullName(data)
+            
+        elif fullName !='all' and position != 'all':
+            data = {
+                'position' : position,
+                'fullName' : fullName
+            }
+            
+            print(data)
+            doctors = User.get_doctor_by_fullName_and_position(data)
+        
+        return render_template("search.html" , user=user, doctors=doctors)
+        
+        
 
 @app.route("/appointment/new", methods=["POST"])
 def new_appointment():

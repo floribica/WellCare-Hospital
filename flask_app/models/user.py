@@ -198,6 +198,51 @@ class User:
         return connectToMySQL(cls.db_name).query_db(query, data)
     
     
+    #get doctor by position
+    @classmethod
+    def get_doctor_by_position(cls, data):
+        query = "SELECT * FROM users WHERE position = %(position)s and role = 'D435'; "
+        doctor = connectToMySQL(cls.db_name).query_db(query,data)
+        users = []
+        if doctor:
+            for d in doctor:
+                users.append(d)
+        return users
+    
+    #get doctor by fullName
+    @classmethod
+    def get_doctor_by_fullName_and_position(cls, data):
+        query = "SELECT * FROM users WHERE fullName LIKE %(fullName)s and position = %(position)s and role = 'D435'; "
+        doctor = connectToMySQL(cls.db_name).query_db(query,data)
+        users = []
+        if doctor:
+            for d in doctor:
+                users.append(d)
+        return users
+    
+    @classmethod
+    def get_doctor_by_fullName(cls, data):
+        query = "SELECT * FROM users WHERE fullName LIKE %(fullName)s and role = 'D435'; "
+        doctor = connectToMySQL(cls.db_name).query_db(query,data)
+        users = []
+        if doctor:
+            for d in doctor:
+                users.append(d)
+        return users
+    
+    
+    
+    #get doctor by fullName and position
+    @classmethod
+    def get_doctor_by_fullName_and_position(cls, data):
+        query = "SELECT * FROM users WHERE fullName LIKE  %(fullName)s AND position = %(position)s AND role = 'D435';"
+        doctor = connectToMySQL(cls.db_name).query_db(query,data)
+        users = []
+        if doctor:
+            for d in doctor:
+                users.append(d)
+        return users
+    
     #validate user
     @staticmethod
     def validate_user(data):

@@ -120,13 +120,7 @@ def register_process():
     }
     application = Application.get_application_by_email({"email": request.form["email"]})
     User.create_user(data)
-    
-    data2 = {
-        "id": application['id']
-    }
-    
-    Application.update_checked(data2)
-    
+
     LOGIN = ADMINEMAIL
     TOADDRS  = request.form['email']
     SENDER = ADMINEMAIL
@@ -143,7 +137,6 @@ def register_process():
     server.sendmail(SENDER, TOADDRS, msg)
     server.quit()
     
-    Application.update_checked(data2)
     return redirect("/")
 
 
