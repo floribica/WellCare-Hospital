@@ -1,0 +1,199 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>WellCare</title>
+    <link rel="icon" href="../static/index/img/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/signup.css') }}" />
+
+</head>
+
+<body>
+
+    <section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span>
+
+
+        <div class="signup ">
+            <form class="content" action="/register/process" method="post">
+                <div class="content">
+
+                    <h2>Sign Up</h2>
+
+                    <div class="form">
+
+                        <div class="inputBox">
+
+                            <input type="text" name="fullName" value="{{app_user.fullName}}" required> <i>Full Name</i>
+
+                        </div>
+                        {% with messages = get_flashed_messages(category_filter=["fullregister"]) %}
+                        {% if messages %}
+
+                        {% for message in messages %}
+                        <p class="text-danger text-center">{{ message }}</p>
+                        {% endfor %}
+
+                        {% endif %}
+                        {% endwith %}
+
+
+                        <div class="inputBox">
+
+                            <input type="text" name="username" required> <i>Username</i>
+
+                        </div>
+                        {% with messages = get_flashed_messages(category_filter=["usernameregister"]) %}
+                        {% if messages %}
+
+                        {% for message in messages %}
+                        <p class="text-danger text-center">{{ message }}</p>
+                        {% endfor %}
+
+                        {% endif %}
+                        {% endwith %}
+
+                        <div class="inputBox">
+
+                            <input type="email" name="email" value="{{app_user.email}}" required> <i>Email</i>
+
+                        </div>
+                        {% with messages = get_flashed_messages(category_filter=["emailregister"]) %}
+                        {% if messages %}
+
+                        {% for message in messages %}
+                        <p class="text-danger text-center">{{ message }}</p>
+                        {% endfor %}
+
+                        {% endif %}
+                        {% endwith %}
+
+                        <div class="d-flex justify-content-evenly">
+                            <div class="form-check form-check-inline">
+                                <input class="btn-check" type="radio" name="role" id="admin" value="a">
+                                <label class="btn btn-outline-dark" for="admin">Admin</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="btn-check" type="radio" name="role" id="doc" value="d">
+                                <label class="btn btn-outline-dark" for="doc">Doctor</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="btn-check" type="radio" name="role" id="nurse" value="n">
+                                <label class="btn btn-outline-dark" for="nurse">Nurse</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="btn-check" type="radio" name="role" id="pharmacist" value="f">
+                                <label class="btn btn-outline-dark" for="pharmacist">Pharmacist</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="btn-check" type="radio" name="role" id="patient" value="p">
+                                <label class="btn btn-outline-dark" for="patient">Patient</label>
+                            </div>
+                        </div>
+                        
+
+                        <div class="links">Finish Here!!! <a href="/">Go Back</a>
+
+                        </div>
+
+                        <div class="inputBox">
+
+                            <input type="submit" value="Sign in">
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+    </section>
+
+
+
+    <script>
+         // Get the value to check
+        var roleValue = "{{ app_user.role }}"; // Assuming role is dynamically set
+            
+        if (roleValue === "doctor") {
+            roleValue = "d"; // Set role value to "D456" if role is "doctor"
+        }    
+        else if (roleValue === "nurse") {
+            roleValue = "n"; // Set role value to "N456" if role is "nurse"
+        }
+        else if (roleValue === "pharmacist") {
+            roleValue = "f"; // Set role value to "F456" if role is "pharmacist"
+        }
+        else if (roleValue === "patient") {
+            roleValue = "p"; // Set role value to "P456" if role is "patient"
+        }
+        else if (roleValue === "admin") {
+            roleValue = "a"; // Set role value to "A456" if role is "admin"
+        }
+        // Loop through radio buttons to find the one with the matching value
+        var radioButtons = document.getElementsByName('role');
+        for (var i = 0; i < radioButtons.length; i++) {
+            if (radioButtons[i].value === roleValue) {
+                radioButtons[i].checked = true; // Set the radio button as checked if its value matches the roleValue
+                break; // Exit the loop once a match is found
+            }
+        }
+
+        var fullName = "{{ app_user.fullName }}"; // Assuming fullName is dynamically set
+
+        // Extract the first letter of the first name and the last name
+        var names = fullName.split(' '); // Split the fullName into an array of names
+        var firstName = names[0].toLowerCase(); // Get the first name
+        var lastName = names[names.length - 1].toLowerCase(); // Get the last name
+        var firstLetter = firstName.charAt(0); // Get the first letter of the first name
+        // Get the current year
+        var currentYear = new Date().getFullYear();
+
+        // Concatenate the first letter of the first name, the last name, and the current year
+        var result = firstLetter + lastName + currentYear;
+
+        // Set the value of the username input to the result
+        document.getElementsByName('username')[0].value = result;
+    </script>
+
+</body>
+
+</html>

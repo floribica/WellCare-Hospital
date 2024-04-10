@@ -1,0 +1,144 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>WellCare</title>
+    <link rel="icon" href="../static/index/img/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/login.css') }}" />
+
+    <style>
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
+            .signin {
+                width: 90%;
+                margin: auto;
+            }
+        }
+        @media screen and (max-width: 576px) {
+            .signin {
+                width: 100%;
+                padding: 0 15px;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span>
+
+
+        <div class="signin">
+            <form class="form" action="/reset/password" method="post">
+                <div class="content">
+
+
+                    <h2>{{user.fullName}}</h2>
+
+                    <div class="form">
+
+                        <div class="inputBox">
+
+                            <input type="password" name="oldpass" required> <i>Old Password</i>
+
+                        </div>
+                        {% with messages = get_flashed_messages(category_filter=["oldpass"]) %}
+                        {% if messages %}
+
+                        {% for message in messages %}
+                        <p class="text-danger text-center">{{ message }}</p>
+                        {% endfor %}
+
+                        {% endif %}
+                        {% endwith %}
+
+                        <div class="inputBox">
+
+                            <input type="password" name="newpass" required> <i>New Password</i>
+
+                        </div>
+                        {% with messages = get_flashed_messages(category_filter=["newpass"]) %}
+                        {% if messages %}
+
+                        {% for message in messages %}
+                        <p class="text-danger text-center">{{ message }}</p>
+                        {% endfor %}
+
+                        {% endif %}
+                        {% endwith %}
+
+                        <div class="inputBox">
+
+                            <input type="password" name="confirmpass" required> <i> Confirm Password</i>
+
+                        </div>
+                        {% with messages = get_flashed_messages(category_filter=["confirmpass"]) %}
+                        {% if messages %}
+
+                        {% for message in messages %}
+                        <p class="text-danger text-center">{{ message }}</p>
+                        {% endfor %}
+
+                        {% endif %}
+                        {% endwith %}
+
+                        </div>
+
+                        <div class="inputBox">
+
+                            <input type="submit" class="btn btn-success" value="Change Password">
+                            <a href="/" class="btn btn-danger"> Go back</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+    </section>
+
+</body>
+
+</html>

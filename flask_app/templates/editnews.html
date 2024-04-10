@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>WellCare</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicon -->
+  <link rel="icon" href="../static/index/img/favicon.png">
+
+  <link rel="stylesheet" href="../static/css/news.css">
+</head>
+
+<body>
+  <form action="/posteditnews/{{news.id}}" method="post">
+    <div class="card center" style="margin-top: 10%;">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <div id="card-sizer">
+
+        <path
+          d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z">
+        </path>
+        </svg>
+
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="{{news.title}}" required>
+
+        <label for="description" style="font-size: large;">Description: </label>
+        <textarea id="description" name="description" rows="4" cols="50" required>{{news.description}}</textarea>
+
+
+        <label for="link" style="font-size: large;">Link: </label>
+        <input type="text" id="link" name="link" value="{{news.link}}" required>
+
+        <hr>
+        <p class="d-flex">
+          <a href="/shownews">
+            Go Back
+            <svg class="arrow" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+              <path
+                d="M470.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 256 265.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160zm-352 160l160-160c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L210.7 256 73.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0z">
+              </path>
+            </svg>
+          </a>
+          <button type="submit">
+            Save
+            <svg class="arrow" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+              <path
+                d="M470.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 256 265.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160zm-352 160l160-160c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L210.7 256 73.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0z">
+              </path>
+            </svg>
+          </button>
+      
+        </p>
+      
+      </div>
+    </div>
+  </form>
+</body>
+
+</html>

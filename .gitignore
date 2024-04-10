@@ -1,0 +1,11 @@
+#ignore env file
+.env
+
+.DS_Store
+.vscode/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+Pipefile/
+Pipfile.lock

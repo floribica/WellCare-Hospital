@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>WellCare</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link rel="icon" href="../static/index/img/favicon.png">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="../static/patient/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../static/patient/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../static/patient/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="../static/patient/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar Start -->
+    <div class="container-fluid sticky-top bg-white shadow-sm">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
+                <a href="index.html" class="navbar-brand">
+                    <h1 class="m-0 text-uppercase text-primary"><i class="fa fa-clinic-medical me-2"></i>WellCare</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0">
+                        <a href="/" class="nav-item nav-link active">Home</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu m-0">
+                                <a href="" class="dropdown-item">Cartel</a>
+                                <a href="" class="dropdown-item">Prescriptions</a>
+                                <a href="" class="dropdown-item">Appointments</a>
+                            </div>
+                        </div>
+                        <a href="/buy/medicine" class="nav-item nav-link">Pharmacy</a>
+                        <a href="/finddoctor" class="nav-item nav-link">Search</a>
+                        <a href="#footer" class="nav-item nav-link">Contact</a>
+                        <a href="/logout" class="nav-item nav-link">Logout</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Hero Start -->
+    <div class="container-fluid bg-primary py-5 mb-5 hero-header">
+        <div class="container py-5">
+            <div class="row justify-content-start">
+                <div class="col-lg-8 text-center text-lg-start">
+                    <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5"
+                        style="border-color: rgba(256, 256, 256, .3) !important;">Welcome To WellCare Hospital</h5>
+                    <h1 class="display-1 text-white mb-md-4">Best Healthcare Solution In Your City</h1>
+                    <div class="pt-2">
+                        <a href="/finddoctor" class="btn btn-light rounded-pill py-md-3 px-md-5 mx-2">Find Doctor</a>
+                        <a href="#appointment"
+                            class="btn btn-outline-light rounded-pill py-md-3 px-md-5 mx-2">Appointment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+
+
+    <!-- About Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-100 rounded" src="../static/patient/img/about.jpg"
+                            style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="mb-4">
+                        <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">About Us</h5>
+                        <h1 class="display-4">Best Medical Care For Yourself and Your Family</h1>
+                    </div>
+                    <p>
+                        This healthcare institution is dedicated to providing quality care under the expertise of only
+                        the most qualified doctors. With a commitment to excellence, they prioritize patient well-being
+                        while fostering a professional environment that encourages collaboration and continuous learning
+                        among peers. Furthermore, their dedication to medical research ensures that they remain at the
+                        forefront of innovation, offering doctors opportunities to contribute to groundbreaking
+                        advancements in healthcare. Joining this institution means not only delivering exceptional care
+                        but also being part of a dynamic team dedicated to improving medical practices and outcomes.</p>
+                    <div class="row g-3 pt-3">
+                        <div class="col-sm-3 col-6">
+                            <div class="bg-light text-center rounded-circle py-4">
+                                <i class="fa fa-3x fa-user-md text-primary mb-3"></i>
+                                <h6 class="mb-0">Qualified<small class="d-block text-primary">Doctors</small></h6>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-6">
+                            <div class="bg-light text-center rounded-circle py-4">
+                                <i class="fa fa-3x fa-procedures text-primary mb-3"></i>
+                                <h6 class="mb-0">Emergency<small class="d-block text-primary">Services</small></h6>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-6">
+                            <div class="bg-light text-center rounded-circle py-4">
+                                <i class="fa fa-3x fa-microscope text-primary mb-3"></i>
+                                <h6 class="mb-0">Accurate<small class="d-block text-primary">Testing</small></h6>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-6">
+                            <div class="bg-light text-center rounded-circle py-4">
+                                <i class="fa fa-3x fa-ambulance text-primary mb-3"></i>
+                                <h6 class="mb-0">Free<small class="d-block text-primary">Ambulance</small></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- Services Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Services</h5>
+                <h1 class="display-4">Excellent Medical Services</h1>
+            </div>
+            <div class="row g-5">
+                <div class="col-lg-4 col-md-6">
+                    <div
+                        class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                        <div class="service-icon mb-4">
+                            <i class="fa fa-2x fa-user-md text-white"></i>
+                        </div>
+                        <h4 class="mb-3">Emergency Care</h4>
+                        <p class="m-10">Your lifeline in critical moments. Our hospital provides rapid, expert medical
+                            attention 24/7, ensuring immediate care for urgent medical needs. Trust us for prompt,
+                            compassionate service when every second counts.</p>
+                        <a class="btn btn-lg btn-primary rounded-pill" href="#appointment">
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div
+                        class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                        <div class="service-icon mb-4">
+                            <i class="fa fa-2x fa-procedures text-white"></i>
+                        </div>
+                        <h4 class="mb-3">Operation & Surgery</h4>
+                        <p class="m-0">Offering Advanced Procedures & Precision Surgery for Your Well-being.
+
+                        </p>
+                        <a class="btn btn-lg btn-primary rounded-pill" href="#appointment">
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div
+                        class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                        <div class="service-icon mb-4">
+                            <i class="fa fa-2x fa-stethoscope text-white"></i>
+                        </div>
+                        <h4 class="mb-3">Outdoor Checkup</h4>
+                        <p class="m-0">Your Trusted Destination for Quality Healthcare. Experience expert care, advanced
+                            diagnostics, and compassionate service at our state-of-the-art facility. Your well-being is
+                            our priority.</p>
+                        <a class="btn btn-lg btn-primary rounded-pill" href="#appointment">
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div
+                        class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                        <div class="service-icon mb-4">
+                            <i class="fa fa-2x fa-ambulance text-white"></i>
+                        </div>
+                        <h4 class="mb-3">Ambulance Service</h4>
+                        <p class="m-0">Providing swift emergency medical transport to our hospital, ensuring rapid
+                            response and expert care when every moment counts.</p>
+                        <a class="btn btn-lg btn-primary rounded-pill" href="#appointment">
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div
+                        class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                        <div class="service-icon mb-4">
+                            <i class="fa fa-2x fa-pills text-white"></i>
+                        </div>
+                        <h4 class="mb-3">Medicine & Pharmacy</h4>
+                        <p class="m-0">Comprehensive healthcare solutions combining expertise in medicine and pharmacy
+                            for optimal patient care.</p>
+                        <a class="btn btn-lg btn-primary rounded-pill" href="#appointment">
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div
+                        class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                        <div class="service-icon mb-4">
+                            <i class="fa fa-2x fa-microscope text-white"></i>
+                        </div>
+                        <h4 class="mb-3">Blood Testing</h4>
+                        <p class="m-0">Trust in our precision diagnostics for accurate results. Our hospital's
+                            state-of-the-art facilities ensure swift and reliable blood tests, aiding in swift diagnoses
+                            and personalized treatment plans.</p>
+                        <a class="btn btn-lg btn-primary rounded-pill" href="">
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Services End -->
+
+
+    <!-- Appointment Start -->
+    <div class="container-fluid bg-primary my-5 py-5" id="appointment">
+        <div class="container py-5">
+            <div class="row gx-5">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="mb-4">
+                        <h5 class="d-inline-block text-white text-uppercase border-bottom border-5">Appointment</h5>
+                        <h1 class="display-4">Make An Appointment For Your Family</h1>
+                    </div>
+                    <p class="text-white mb-5">
+                        Our hospital is dedicated to providing quality care under the expertise of only the most
+                        qualified doctors. With a commitment to excellence, we prioritize patient well-being while
+                        fostering a professional environment that encourages collaboration and continuous learning among
+                        peers. Furthermore, our dedication to medical research ensures that we remain at the forefront
+                        of innovation, offering doctors opportunities to contribute to groundbreaking advancements in
+                        healthcare. Joining our institution means not only delivering exceptional care but also being
+                        part of a dynamic team dedicated to improving medical practices and outcomes.
+                    </p>
+                    <a class="btn btn-outline-dark rounded-pill py-3 px-5" href="/finddoctor">Find Doctor</a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="bg-white text-center rounded p-5">
+                        <h1 class="mb-4">Book An Appointment</h1>
+                        <form action="/appointment/new" method="post">
+                            <div class="row g-3">
+                                <div class="col-12 col-sm-6">
+                                    <select name="department" class="form-select bg-light border-0"
+                                        style="height: 55px;">
+                                        <option selected>Choose Department</option>
+                                        <option value="Emergency Department">Emergency Department</option>
+                                        <option value="Surgical Department">Surgical Department</option>
+                                        <option value="Intensive Care Unit">Intensive Care Unit</option>
+                                    </select>
+                                    {% with messages = get_flashed_messages(category_filter=["department"]) %}
+                                    {% if messages %}
+
+                                    {% for message in messages %}
+                                    <p class="text-danger text-center">{{ message }}</p>
+                                    {% endfor %}
+
+                                    {% endif %}
+                                    {% endwith %}
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <select name="doctor" class="form-select bg-light border-0" style="height: 55px;">
+                                        <option selected>Select Doctor</option>
+                                        {%for doc in all_doctors%}
+                                        <option value="{{doc.id}}">{{doc.fullName}}</option>
+                                        {%endfor%}
+                                    </select>
+                                    {% with messages = get_flashed_messages(category_filter=["doctor"]) %}
+                                    {% if messages %}
+
+                                    {% for message in messages %}
+                                    <p class="text-danger text-center">{{ message }}</p>
+                                    {% endfor %}
+
+                                    {% endif %}
+                                    {% endwith %}
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <input name="fullName" type="text" class="form-control bg-light border-0"
+                                        placeholder="Your Full Name" style="height: 55px;">
+                                    {% with messages = get_flashed_messages(category_filter=["fullName"]) %}
+                                    {% if messages %}
+
+                                    {% for message in messages %}
+                                    <p class="text-danger text-center">{{ message }}</p>
+                                    {% endfor %}
+
+                                    {% endif %}
+                                    {% endwith %}
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <input name="email" type="email" class="form-control bg-light border-0"
+                                        placeholder="Your Email" style="height: 55px;">
+                                </div>
+                                {% with messages = get_flashed_messages(category_filter=["email"]) %}
+                                {% if messages %}
+
+                                {% for message in messages %}
+                                <p class="text-danger text-center">{{ message }}</p>
+                                {% endfor %}
+
+                                {% endif %}
+                                {% endwith %}
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100 py-3" type="submit">Make An
+                                        Appointment</button>
+                                    {% with messages = get_flashed_messages(category_filter=["success"]) %}
+                                    {% if messages %}
+
+                                    {% for message in messages %}
+                                    <p class="text-success text-center">{{ message }}</p>
+                                    {% endfor %}
+
+                                    {% endif %}
+                                    {% endwith %}
+                                    {% with messages = get_flashed_messages(category_filter=["appointmenterror"]) %}
+                                    {% if messages %}
+
+                                    {% for message in messages %}
+                                    <p class="text-danger text-center">{{ message }}</p>
+                                    {% endfor %}
+
+                                    {% endif %}
+                                    {% endwith %}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Appointment End -->
+
+
+    <!-- Pricing Plan Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Medical Packages</h5>
+                <h1 class="display-4">Awesome Medical Programs</h1>
+            </div>
+            <div class="owl-carousel price-carousel position-relative" style="padding: 0 45px 45px 45px;">
+                {% for package in packages %}
+                <div class="bg-light rounded text-center">
+                    <div class="position-relative">
+                        <img class="img-fluid rounded-top" src="../static/patient/img/{{package.image}}" alt="">
+                        <div class="position-absolute w-100 h-100 top-50 start-50 translate-middle rounded-top d-flex flex-column align-items-center justify-content-center"
+                            style="background: rgba(29, 42, 77, .8);">
+                            <h3 class="text-white">{{package.name}}</h3>
+                            <h1 class="display-4 text-white mb-0">
+                                <small class="align-top fw-normal"
+                                    style="font-size: 22px; line-height: 45px;">$</small>{{package.price}}<small
+                                    class="align-bottom fw-normal" style="font-size: 16px; line-height: 40px;">/
+                                    Year</small>
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="text-center py-5">
+                        {%for content in contents%}
+                        {% if content.package_id == package.id %}
+                        <p>{{content.content}}</p>
+                        {% endif %}
+                        {%endfor%}
+                        <a href="/checkout/paypal/{{package.id}}" class="btn btn-primary rounded-pill py-3 px-5 my-2">Buy Now</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Pricing Plan End -->
+
+
+    <!-- Team Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Our Doctors</h5>
+                <h1 class="display-4">Qualified Healthcare Professionals</h1>
+            </div>
+            <div class="owl-carousel team-carousel position-relative">
+                {% for doctor in doctors %}
+                <div class="team-item">
+                    <div class="row g-0 bg-light rounded overflow-hidden">
+                        <div class="col-12 col-sm-5 h-100">
+                            {% if doctor.image != None %}
+                            <img class="img-fluid h-100" src="../static/img/{{doctor.image}}">
+                            {% else %}
+                            <img class="img-fluid h-100" src="../static/img/profilephoto.webp">
+                            {% endif %}
+                        </div>
+                        <div class="col-12 col-sm-7 h-100 d-flex flex-column">
+                            <div class="mt-auto p-4">
+                                <a href="/profile/{{doctor.id}}"><h3>{{doctor.fullName}}</h3></a>
+                                {% if doctor.position != None %}
+                                <h6 class="fw-normal fst-italic text-primary mb-4">{{doctor.position}}</h6>
+                                {% else %}
+                                <h6 class="fw-normal fst-italic text-primary mb-4">New Here</h6>
+                                {% endif %}
+                            </div>
+                            <p class="mb-4 px-3" style="font-size: x-small;">{{doctor.short_info}}</p>
+                            <div class="d-flex mt-auto border-top p-4">
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="#"><i
+                                        class="fab fa-twitter"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="#"><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="#"><i
+                                        class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Team End -->
+
+
+
+
+
+    <!-- Testimonial Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Testimonial</h5>
+                <h1 class="display-4">Patients Say About Our Services</h1>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="owl-carousel testimonial-carousel">
+                        {% for testimonial in testimonials %}
+                        <div class="testimonial-item text-center">
+                            <div class="position-relative mb-5">
+                                {% if testimonial.image != None %}
+                                <img class="img-fluid rounded-circle mx-auto"
+                                    src="../static/img/{{testimonial.image}}" alt="">
+                                {% else %}
+                                <img class="img-fluid rounded-circle mx-auto"
+                                    src="../static/img/profilephoto.webp" alt="">
+                                {% endif %}
+                                <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white rounded-circle"
+                                    style="width: 60px; height: 60px;">
+                                    <i class="fa fa-quote-left fa-2x text-primary"></i>
+                                </div>
+                            </div>
+                            <p class="fs-4 fw-normal">{{testimonial.description}}</p>
+                            <hr class="w-25 mx-auto">
+                            <a href="/profile/{{testimonial.user_id}}"><h3>{{testimonial.fullName}}</h3></a>
+                            {% if testimonial.role == 'A555' %}
+                            <h6 class="fw-normal text-primary mb-3">Administrator</h6>
+                            {% elif testimonial.role == 'D435' %}
+                            <h6 class="fw-normal text-primary mb-3">Doctor</h6>
+                            {% elif testimonial.role == 'P493' %}
+                            <h6 class="fw-normal text-primary mb-3">Patient</h6>
+                            {% elif testimonial.role == 'N792' %}
+                            <h6 class="fw-normal text-primary mb-3">Nurse</h6>
+                            {% elif testimonial.role == 'PH528' %}
+                            <h6 class="fw-normal text-primary mb-3">Pharmacist</h6>
+                            {% else %}
+                            <h6 class="fw-normal text-primary mb-3">New Here</h6>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonial End -->
+
+
+    <!-- Blog Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Blog Post</h5>
+                <h1 class="display-4">Our Latest Medical Blog Posts</h1>
+            </div>
+            <div class="row g-5">
+                {%for news in news%}
+                <div class="col-xl-4 col-lg-6">
+                    <div class="bg-light rounded overflow-hidden">
+                        <img class="img-fluid w-100" src="../static/img/{{news.image}}" alt="">
+                        <div class="p-4">
+                            <a class="h3 d-block mb-3" href="{{news.link}}" target="_blank">{{news.title}}</a>
+                            <p class="m-0">{{news.description}}</p>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+    <!-- Blog End -->
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light mt-5 py-5" id="footer">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">
+                        Get In Touch</h4>
+                    <p class="mb-4">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed
+                        dolor</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>123 Street, New York, USA</p>
+                    <p class="mb-2"><i class="fa fa-envelope text-primary me-3"></i>info@example.com</p>
+                    <p class="mb-0"><i class="fa fa-phone-alt text-primary me-3"></i>+012 345 67890</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">
+                        Quick Links</h4>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Home</a>
+                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>About Us</a>
+                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Our Services</a>
+                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Meet The Team</a>
+                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Latest Blog</a>
+                        <a class="text-light" href="#"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">
+                        Popular Links</h4>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Home</a>
+                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>About Us</a>
+                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Our Services</a>
+                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Meet The Team</a>
+                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Latest Blog</a>
+                        <a class="text-light" href="#"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">
+                        Your Opinion</h4>
+                    <form action="/testimonials/new" method="post">
+                        <div class="input-group">
+                            <textarea name="description" id="description" cols="30" rows="5"></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary" id="send">Send</button>
+                        </div>
+                        {% with messages = get_flashed_messages(category_filter=["testimonialerror"]) %}
+                        {% if messages %}
+
+                        {% for message in messages %}
+                        <p class="text-danger text-center">{{ message }}</p>
+                        {% endfor %}
+
+                        {% endif %}
+                        {% endwith %}
+                    </form>
+                    <div class="d-flex">
+                        <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="#"><i
+                                class="fab fa-twitter"></i></a>
+                        <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="#"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="#"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="#"><i
+                                class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-light border-top border-secondary py-4">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-md-0">&copy; <a class="text-primary" href="/">WellCare Hospital</a>. All Rights
+                        Reserved.
+                    </p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Designed by <a class="text-primary" href="">Flori Bica</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/patient/lib/easing/easing.min.js"></script>
+    <script src="../static/patient/lib/waypoints/waypoints.min.js"></script>
+    <script src="../static/patient/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../static/patient/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="../static/patient/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="../static/patient/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="../static/patient/js/main.js"></script>
+</body>
+
+</html>
