@@ -9,14 +9,12 @@ from dotenv import load_dotenv
 from flask_app.controllers.check_user import check_admin
 
 
-
 load_dotenv()
 UPLOAD_FOLDER = os.getenv("UPLOAD_FOLDER")
 ALLOWED_EXTENSIONS = os.getenv("ALLOWED_EXTENSIONS")
 
 
-
-#add news
+# add news
 @app.route("/news/new", methods=["POST"])
 def add_news():
         
@@ -50,8 +48,7 @@ def add_news():
         return redirect(request.referrer)
 
 
-
-#delete news
+# delete news
 @app.route("/deletenews/<int:id>")
 def delete_news(id):
     
@@ -62,8 +59,7 @@ def delete_news(id):
         return redirect(request.referrer)   
 
 
-
-#edit news
+# edit news
 @app.route("/viewnews/<int:id>")
 def edit_news(id):
     
@@ -74,8 +70,7 @@ def edit_news(id):
         return render_template("viewnews.html", news=news)
 
 
-
-#edit news
+# edit news
 @app.route("/editnews/<int:id>")
 def update_news(id):
     
@@ -86,8 +81,7 @@ def update_news(id):
         return render_template("editnews.html", news=news)
 
 
-
-#post edit news
+# post edit news
 @app.route("/posteditnews/<int:id>", methods=["POST"])
 def post_edit_news(id):
     

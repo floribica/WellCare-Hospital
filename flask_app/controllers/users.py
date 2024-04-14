@@ -11,11 +11,7 @@ from flask import redirect, request, flash
 import bcrypt
 from dotenv import load_dotenv
 
-
-
 bcrypt = Bcrypt(app)
-
-
 
 load_dotenv()
 UPLOAD_FOLDER = os.getenv("UPLOAD_FOLDER")
@@ -28,8 +24,7 @@ PATIENT_ROLE = os.getenv("PATIENT_ROLE")
 PHARMACIST_ROLE = os.getenv("PHARMACIST_ROLE")
 
 
-
-#open the dashboard page
+# open the dashboard page
 @app.route("/dashboard")
 def dashboard():
     
@@ -43,8 +38,7 @@ def dashboard():
         return render_template("index.html" , doctor=doctor, patient=patient , news=news)
 
 
-
-#check if I have a user in session and redirect to the correct page
+# check if I have a user in session and redirect to the correct page
 @app.route("/check")
 def check():
     
@@ -54,8 +48,7 @@ def check():
         return redirect("/dashboard")
 
 
-
-#check which role the user has and redirect to the correct page
+# check which role the user has and redirect to the correct page
 @app.route("/")
 def index():
     
@@ -80,8 +73,7 @@ def index():
         return redirect(request.referrer)
 
 
-
-#open login page
+# open login page
 @app.route("/login")
 def login():
     
@@ -91,8 +83,7 @@ def login():
         return render_template("login.html")
 
 
-
-#process login
+# process login
 @app.route("/login/process", methods=["POST"])
 def login_process():
     
@@ -114,7 +105,7 @@ def login_process():
         return redirect("/")
 
 
-#logout
+# logout
 @app.route("/logout")
 def logout():
    
@@ -123,8 +114,7 @@ def logout():
         return redirect("/check")
 
 
-
-#add user profile
+# add user profile
 @app.route("/profile/info", methods=["POST"])
 def profile_info():
     
@@ -156,8 +146,7 @@ def profile_info():
         return redirect(request.referrer)
 
 
-
-#update user profile
+# update user profile
 @app.route("/profile/update", methods=["POST"])
 def profile_update():
     
@@ -180,8 +169,7 @@ def profile_update():
         return redirect(request.referrer)
 
 
-
-#if a route is not found, it will redirect to the login page
+# if a route is not found, it will redirect to the login page
 @app.errorhandler(404)
 def page_not_found(e):
     
@@ -204,8 +192,7 @@ def page_not_found(e):
         return render_template('/')
     
 
-
-#add profile picture
+# add profile picture
 @app.route("/add/photo", methods=["POST"])
 def add_photo():
     
@@ -219,9 +206,9 @@ def add_photo():
             
             if image.filename != '':
                 
-                    #check if the file is allowed by ALLOWED_EXTENSIONS
+                    # check if the file is allowed by ALLOWED_EXTENSIONS
                     if image and '.' in image.filename and image.filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS:
-                            #add current timi in the file name
+                            # add current timi in the file name
                             filename = secure_filename(image.filename)
                             filename = str(datetime.now().timestamp()) + filename
                             image.save(os.path.join(UPLOAD_FOLDER, filename))
@@ -235,8 +222,7 @@ def add_photo():
         return redirect(request.referrer)
 
 
-
-#show profile of a user
+# show profile of a user
 @app.route("/profile/<int:id>")
 def showProfile(id):
     
@@ -248,8 +234,7 @@ def showProfile(id):
         return render_template("showprofile.html", user=user)
 
 
-
-#reset password
+# reset password
 @app.route("/reset/<int:id>")
 def reset(id):
     
@@ -261,8 +246,7 @@ def reset(id):
         return render_template("reset.html", user=user)
 
 
-
-#process reset password
+# process reset password
 @app.route("/reset/password", methods=["POST"])
 def reset_password():
     

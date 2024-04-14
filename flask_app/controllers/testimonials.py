@@ -3,6 +3,7 @@ from flask import render_template, request, session, redirect, flash
 from flask_app.models.testimonial import Testimonial
 from flask_app.controllers.check_user import check_patient
 
+
 @app.route("/testimonials/new", methods=["POST"])
 def new_testimonial():
         

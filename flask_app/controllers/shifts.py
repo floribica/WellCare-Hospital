@@ -2,9 +2,11 @@ from flask_app import app
 from flask import render_template, request, session, redirect, flash
 from flask_app.models.shift import Shift
 
+
 @app.route("/doctor/shift")
 def doctor_shift():
     return render_template("doctor_shifts.html")
+
 
 @app.route("/doctor/shift/process", methods=["POST"])
 def doctor_shift_process():

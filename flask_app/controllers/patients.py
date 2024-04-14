@@ -16,7 +16,7 @@ CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_SECRET_KEY = os.getenv("CLIENT_SECRET_KEY")
 
 
-#open the patient page
+# open the patient page
 @app.route("/patient")
 def patient():
         
@@ -33,8 +33,7 @@ def patient():
         return render_template("patient.html", user=user, doctors=doctors,all_doctors=all_doctors , news=news, testimonials=testimonials , packages=packages, contents=contents)
 
 
-
-#open page for patient to buy medicine
+# open page for patient to buy medicine
 @app.route("/buy/medicine")
 def buy_medicine():
         
@@ -45,8 +44,7 @@ def buy_medicine():
         return render_template("buy.html", user=user)
 
 
-
-#open page for patient to find doctor
+# open page for patient to find doctor
 @app.route("/finddoctor", methods = ['GET','POST'])
 def finddoctor():
         
@@ -96,10 +94,9 @@ def finddoctor():
                 
                 
                 return render_template("search.html" , user=user, doctors=doctors)
-        
-        
 
-#create new appointment
+
+# create new appointment
 @app.route("/appointment/new", methods=["POST"])
 def new_appointment():
     
@@ -126,8 +123,7 @@ def new_appointment():
         return redirect(request.referrer)
 
 
-
-#make payment for package
+# make payment for package
 @app.route('/checkout/paypal/<int:id>')
 def checkoutPaypal(id):
         
@@ -176,9 +172,8 @@ def checkoutPaypal(id):
                 flash('Something went wrong with your payment', 'creditCardDetails')
                 return redirect(request.referrer)
             
-            
-            
-#payment success
+
+# payment success
 @app.route("/success", methods=["GET"])
 def paymentSuccess():
     
@@ -221,8 +216,7 @@ def paymentSuccess():
                 return redirect('/')
 
 
-
-#payment cancel
+# payment cancel
 @app.route("/cancel", methods=["GET"])
 def paymentCancel():
         flash('Payment was canceled', 'paymentCanceled')

@@ -1,10 +1,9 @@
-from flask import Flask
 from dotenv import load_dotenv
 import os
+from flask import Flask 
 
 load_dotenv()
 SESSION_SECRET_KEY = os.getenv('SESSION_SECRET_KEY')
-
 
 
 app = Flask(__name__)

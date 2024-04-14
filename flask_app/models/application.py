@@ -7,6 +7,7 @@ import os
 load_dotenv()
 DB_NAME = os.getenv("DB_NAME")
 
+
 class Application:
     
         db_name = DB_NAME
@@ -21,8 +22,7 @@ class Application:
                 self.created_at = data['created_at']
             
             
-            
-        #create application
+        # create application
         @classmethod
         def create_application(cls, data):
             
@@ -31,8 +31,7 @@ class Application:
                 return connectToMySQL(cls.db_name).query_db(query, data)
         
         
-        
-        #get all applications that are not checked
+        # get all applications that are not checked
         @classmethod
         def get_all_applications(cls):
             
@@ -47,9 +46,8 @@ class Application:
                         
                 return applications
             
-       
-        
-        #get all applications
+
+        # get all applications
         @classmethod
         def total_applications(cls):
             
@@ -64,9 +62,8 @@ class Application:
                     
                 return applications
         
-        
-        
-        #get applications count
+
+        # get applications count
         @classmethod
         def get_applications_count(cls):
             
@@ -82,8 +79,7 @@ class Application:
                 return application
         
         
-        
-        #get all applications for email that are checked 
+        # get all applications for email that are checked
         @classmethod
         def get_application_by_email (cls, data):
             
@@ -99,8 +95,7 @@ class Application:
                 return application
         
         
-        
-        #update checked
+        # update checked
         @classmethod
         def update_checked(cls, data):
             
@@ -109,8 +104,7 @@ class Application:
                 return connectToMySQL(cls.db_name).query_db(query, data)
         
         
-        
-        #delete application
+        # delete application
         @classmethod
         def get_application_by_id(cls, data):
             
@@ -125,9 +119,8 @@ class Application:
                 
                 return application
         
-        
-        
-        #validate application
+
+        # validate application
         @staticmethod
         def validate_application(data):
             

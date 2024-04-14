@@ -2,11 +2,12 @@ from flask_app import app
 from flask import request, session, redirect, flash
 from flask_app.models.application import Application
 
+
 @app.route("/application", methods=["POST"])
 def application():
-    
+
         if "user_id" in session:
-            return redirect("/check")
+                return redirect("/check")
         
         data = {
                 "fullName": request.form["fullName"],

@@ -6,8 +6,7 @@ from flask_app.models.testimonial import Testimonial
 from flask_app.controllers.check_user import check_doctor
 
 
-
-#open doctor page
+# open doctor page
 @app.route("/doctor")
 def doctor():
     
@@ -24,9 +23,7 @@ def doctor():
         return render_template("doctor.html", user=user, doctor=doctor , staff=staff, patients=patients, news=news, mydoctor=mydoctor, testimonials=testimonials)  
 
 
-
-
-#open doctor profile
+# open doctor profile
 @app.route("/profile")
 def profile():
         
@@ -37,8 +34,7 @@ def profile():
         return render_template("profile.html", user=user)
 
 
-
-#open patient cartels for the doctor
+# open patient cartels for the doctor
 @app.route("/patient/cartel")
 def cartel():
         
@@ -49,8 +45,7 @@ def cartel():
         return render_template("patientCartel.html" , patients=patients)
 
 
-
-#open colleague page
+# open colleague page
 @app.route("/colleague")
 def colleague():
         

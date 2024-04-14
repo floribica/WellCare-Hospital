@@ -15,8 +15,8 @@ PATIENT_ROLE = os.getenv("PATIENT_ROLE")
 PHARMACIST_ROLE = os.getenv("PHARMACIST_ROLE")
 
 
-#check if user is logged in and if user is admin
-def check_admin (session):
+# check if user is logged in and if user is admin
+def check_admin(session):
         if "user_id" not in session:
                 return redirect("/check")
         
@@ -26,9 +26,8 @@ def check_admin (session):
                 return redirect("/")
 
 
-
-#check if user is logged in and if user is doctor
-def check_doctor (session):
+# check if user is logged in and if user is doctor
+def check_doctor(session):
         if "user_id" not in session:
                 return redirect("/check")
         
@@ -38,9 +37,8 @@ def check_doctor (session):
                 return redirect("/")
             
 
-
-#check if user is logged in and if user is nurse
-def check_nurse (session):
+# check if user is logged in and if user is nurse
+def check_nurse(session):
         if "user_id" not in session:
                 return redirect("/check")
         
@@ -50,9 +48,8 @@ def check_nurse (session):
                 return redirect("/")
 
 
-
-#check if user is logged in and if user is patient
-def check_patient (session):
+# check if user is logged in and if user is patient
+def check_patient(session):
         if "user_id" not in session:
                 return redirect("/check")
         
@@ -61,10 +58,9 @@ def check_patient (session):
         if user['role'] != PATIENT_ROLE:
                 return redirect("/")
             
-            
-            
-#check if user is logged in and if user is pharmacist
-def check_pharmacist (session):
+
+# check if user is logged in and if user is pharmacist
+def check_pharmacist(session):
         if "user_id" not in session:
                 return redirect("/check")
         

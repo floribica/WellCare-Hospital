@@ -24,8 +24,7 @@ PATIENT_ROLE = os.getenv("PATIENT_ROLE")
 PHARMACIST_ROLE = os.getenv("PHARMACIST_ROLE")
 
 
-
-#open admin page
+# open admin page
 @app.route("/admin")
 def admin():
     
@@ -39,8 +38,7 @@ def admin():
         return render_template("admin.html", user=user, all_users=all_users, applications=applications, applications_count=applications_count)  
 
 
-
-#open table page for admin
+# open table page for admin
 @app.route("/admin/table")
 def table():
     
@@ -59,8 +57,7 @@ def table():
         return render_template("table.html",user=user, admins=admins, doctors=doctors, nurses=nurses, patients=patients,    pharmacists=pharmacists, news=news, application=application ,applications_count=applications_count)
 
 
-
-#register new user manually
+# register new user manually
 @app.route("/register")
 def register():
     
@@ -69,8 +66,7 @@ def register():
         return render_template("register.html")
 
 
-
-#register new user automatically
+# register new user automatically
 @app.route("/register/<int:id>")
 def register_auto(id):
     
@@ -82,8 +78,7 @@ def register_auto(id):
         return render_template("registerAuto.html", app_user=app_user, all_users=all_users)
         
 
-
-#create new user account and send email
+# create new user account and send email
 @app.route("/register/process", methods=["POST"])
 def register_process():
     
@@ -91,7 +86,6 @@ def register_process():
         
         if not User.validate_user(request.form):
                 return redirect(request.referrer)
-
 
         if request.form['role'] == "a":
                 role = ADMIN_ROLE
@@ -104,7 +98,6 @@ def register_process():
         elif request.form['role'] == "f":
                 role = PHARMACIST_ROLE
 
-        
         string = '0123456789ABCDEFGHIJKELNOPKQSTUV'
         vCode = ""
         length = len(string)
@@ -122,9 +115,7 @@ def register_process():
             "password": bcrypt.generate_password_hash(password)
         }
         
-        
         User.create_user(data)
-
 
         LOGIN = ADMINEMAIL
         TOADDRS  = request.form['email']
@@ -147,8 +138,7 @@ def register_process():
         return redirect("/")
 
 
-
-#view user info
+# view user info
 @app.route("/view/<int:id>")
 def view(id):
     
@@ -159,8 +149,7 @@ def view(id):
         return render_template("view.html", user=user)
 
 
-
-#edit user info
+# edit user info
 @app.route("/edit/<int:id>")
 def edit(id):
     
@@ -171,7 +160,7 @@ def edit(id):
         return render_template("edit.html", user=user)
 
 
-#edit user info process
+# edit user info process
 @app.route("/edit/process/<int:id>", methods=["POST"])
 def edit_process(id):
     
@@ -192,7 +181,8 @@ def edit_process(id):
         
         return redirect("/")
 
-#delete user
+
+# delete user
 @app.route("/delete/<int:id>")
 def delete(id):
     
@@ -203,8 +193,7 @@ def delete(id):
         return redirect("/")
 
 
-
-#show all news
+# show all news
 @app.route("/shownews")
 def shownews():
     
