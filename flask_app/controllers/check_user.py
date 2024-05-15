@@ -1,6 +1,6 @@
-from dotenv import load_dotenv
 import os
 
+from dotenv import load_dotenv
 from flask import redirect
 
 from flask_app.models.user import User

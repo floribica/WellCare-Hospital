@@ -1,7 +1,9 @@
-from flask import flash
-from flask_app.config.mysqlconnection import connectToMySQL
-from dotenv import load_dotenv
 import os
+
+from flask import flash
+from dotenv import load_dotenv
+
+from flask_app.config.mysqlconnection import connectToMySQL
 
 
 load_dotenv()
@@ -51,12 +53,9 @@ class User:
         def get_user_by_username(cls, data):
             
                 query = "SELECT * FROM users WHERE username = %(username)s;"
-            
                 results = connectToMySQL(cls.db_name).query_db(query, data)
-            
                 if results:
                         return results[0]
-                
                 return False
         
         
@@ -371,6 +370,11 @@ class User:
                 return users
         
         
+        @classmethod
+        def update_patient(cls, data):
+                query = "UPDATE users SET birthday = %(birthday)s, gender = %(gender)s WHERE id = %(patient_id)s;"
+                return connectToMySQL(cls.db_name).query_db(query, data)
+        
         
         #validate user
         @staticmethod
@@ -435,4 +439,14 @@ class User:
                 
                 return is_valid
         
+        
+        @staticmethod
+        def validate_patient(data):
+                is_valid = True
+                if len(data['birthday']) < 3:
+                        flash("Birthday must be at least 3 characters.", "birthdayregister")
+                        is_valid = False
+                if len(data['gender']) < 3:
+                        is_valid = False
+                return is_valid
         

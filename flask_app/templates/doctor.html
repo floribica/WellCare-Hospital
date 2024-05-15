@@ -227,17 +227,7 @@
                     <div class="testimonial-text rounded text-center p-4">
                         <p>{{testimonial.description}}</p>
                         <a href="/profile/{{testimonial.user_id}}"><h5 class="mb-1">{{testimonial.fullName}}</h5></a>
-                        {% if testimonial.role == 'A555'%}
-                        <span class="fst-italic">Administrator</span>
-                        {%elif testimonial.role == 'D435'%}
-                        <span class="fst-italic">Doctor</span>
-                        {%elif testimonial.role == 'PH528'%}
-                        <span class="fst-italic">Pharmacist</span>
-                        {%elif testimonial.role == 'N792'%}
-                        <span class="fst-italic">Nurse</span>
-                        {%elif testimonial.role == 'P493'%}
                         <span class="fst-italic">Patient</span>
-                        {%endif%}
                     </div>
                 </div>
                 {% endfor %}

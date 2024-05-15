@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>WellCare</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link rel="icon" href="../static/index/img/favicon.png">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="../static/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../static/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" >
+
+    <!-- Template Stylesheet -->
+    <link href="../static/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
+        <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h1 class="m-0 text-primary"><i class="far fa-hospital me-3"></i>WellCare Hospital</h1>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="/" class="nav-item nav-link">Home</a>
+                <a href="/profile" class="nav-item nav-link">Profile</a>
+                <a href="/patient/cartel" class="nav-item nav-link active">Patients</a>
+                <a href="/appointement" class="nav-item nav-link">Appointements</a>
+                <a href="/colleague" class="nav-item nav-link">Colleague</a>
+                <a href="/logout" class="nav-item nav-link">Logout</a>
+            </div>
+            
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!--display patient privios cartel-->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card border-0 shadow mt-4">
+                    <div class="card-header bg-white">
+                        <h5 class="m-0 text-center fs-1">Patient Cartel</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Examinate</th>
+                                        <th scope="col">Treatment Plan</th>
+                                        <th scope="col">Medical Report</th>
+                                        <th scope="col">Summary</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for cartel in cartels %}
+                                    <tr>
+                                        <td>{{cartel.created_at}}</td>
+                                        <td>{{cartel.examinate}}</td>
+                                        <td>{{cartel.treatment}}</td>
+                                        <td>{{cartel.medicalReport}}</td>
+                                        <td>{{cartel.summary}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <form class="m-0" action="/patient/{{patient.id}}" method="post">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card border-0 shadow mt-4">
+                        <div class="card-header bg-white">
+                            <h5 class="m-0 text-center fs-1">Patient Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Name</label>
+                                        <input type="text" class="form-control" id="name" name="name" value="{{patient.fullName}}" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email" value="{{patient.email}}" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="birthday" class="form-label">Birthday</label>
+                                        <input type="text" class="form-control" id="birthday" name="birthday" value="{{patient.birthday}}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="gender" class="form-label">Gender</label>
+                                        <input type="text" class="form-control" id="gender" name="gender" value="{{patient.gender}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label for="examinate" class="form-label">Examinate</label>
+                                        <textarea class="form-control" id="examinate" name="examinate" rows="10"></textarea>
+                                    </div>
+                                </div>
+                                {% with messages = get_flashed_messages(category_filter=["examinate_error"]) %}
+                                    {% if messages %}
+
+                                    {% for message in messages %}
+                                    <p class="text-danger text-center">{{ message }}</p>
+                                    {% endfor %}
+
+                                    {% endif %}
+                                {% endwith %}
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label for="treatment" class="form-label">Treatment Plan</label>
+                                        <textarea class="form-control" id="treatment" name="treatment" rows="10"></textarea>
+                                    </div>
+                                </div>
+                                {% with messages = get_flashed_messages(category_filter=["treatment_error"]) %}
+                                    {% if messages %}
+
+                                    {% for message in messages %}
+                                    <p class="text-danger text-center">{{ message }}</p>
+                                    {% endfor %}
+
+                                    {% endif %}
+                                {% endwith %}
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label for="medicalReport" class="form-label">Medical Report</label>
+                                        <textarea class="form-control" id="medicalReport" name="medicalReport" rows="10"></textarea>
+                                    </div>
+                                </div>
+                                {% with messages = get_flashed_messages(category_filter=["medicalReport_error"]) %}
+                                    {% if messages %}
+
+                                    {% for message in messages %}
+                                    <p class="text-danger text-center">{{ message }}</p>
+                                    {% endfor %}
+
+                                    {% endif %}
+                                {% endwith %}
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label for="summary" class="form-label">Summary</label>
+                                        <textarea class="form-control" id="summary" name="summary" rows="10"></textarea>
+                                    </div>
+                                </div>
+                                {% with messages = get_flashed_messages(category_filter=["summary_error"]) %}
+                                    {% if messages %}
+
+                                    {% for message in messages %}
+                                    <p class="text-danger text-center">{{ message }}</p>
+                                    {% endfor %}
+
+                                    {% endif %}
+                                {% endwith %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center my-4">
+                        <input type="submit" class="btn btn-primary fs-3" style="padding: 1% 20%;" value="Save">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="#">WellCare Hospital</a>, All Right Reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        Designed By <a class="border-bottom" href="">Flori Bica</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/lib/wow/wow.min.js"></script>
+    <script src="../static/lib/easing/easing.min.js"></script>
+    <script src="../static/lib/waypoints/waypoints.min.js"></script>
+    <script src="../static/lib/counterup/counterup.min.js"></script>
+    <script src="../static/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../static/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="../static/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="../static/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="../static/js/main.js"></script>
+</body>
+
+</html>
