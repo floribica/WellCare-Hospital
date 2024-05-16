@@ -21,13 +21,14 @@ class Patient_Cartel:
         self.patient_id = data['patient_id']
         self.created_at = data['created_at']
         
+        
     @classmethod
     def get_cartel_by_id(cls, data):
-        query = "SELECT * FROM patient_cartels WHERE patient_id = %(patient_id)s;"
+        query = "SELECT * FROM patient_cartels LEFT JOIN users ON patient_cartels.writer = users.id WHERE patient_id = %(patient_id)s;"
         results = connectToMySQL(cls.db_name).query_db(query, data)
         cartels = []
         for cartel in results:
-            cartels.append(cls(cartel))
+            cartels.append(cartel)
         return cartels
 
 

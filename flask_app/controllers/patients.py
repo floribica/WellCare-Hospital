@@ -1,14 +1,16 @@
-from flask_app import app
+import os
+
 from flask import render_template, request, session, redirect, flash , url_for
+import paypalrestsdk
+from dotenv import load_dotenv
+
+from flask_app import app
 from flask_app.models.user import User
 from flask_app.models.news import News
 from flask_app.models.appointment import Appointment
 from flask_app.models.testimonial import Testimonial
 from flask_app.models.package import Package
-import paypalrestsdk
 from flask_app.controllers.check_user import check_patient
-from dotenv import load_dotenv
-import os
 
 
 load_dotenv()
@@ -19,9 +21,9 @@ CLIENT_SECRET_KEY = os.getenv("CLIENT_SECRET_KEY")
 # open the patient page
 @app.route("/patient")
 def patient():
-        
-        check_patient(session)
-        
+        check = check_patient(session)
+        if check:
+                return check
         user = User.get_user_by_id({"id": session["user_id"]})
         doctors = User.get_doctor()
         news = News.get_all_news()
@@ -36,62 +38,46 @@ def patient():
 # open page for patient to buy medicine
 @app.route("/buy/medicine")
 def buy_medicine():
-        
-        check_patient(session)
-        
+        check = check_patient(session)
+        if check:
+                return check
         user = User.get_user_by_id({"id": session["user_id"]})
-
         return render_template("buy.html", user=user)
 
 
 # open page for patient to find doctor
 @app.route("/finddoctor", methods = ['GET','POST'])
 def finddoctor():
-        
-        check_patient(session)
-        
+        check = check_patient(session)
+        if check:
+                return check
         user = User.get_user_by_id({"id": session["user_id"]})
-        
         if request.method == 'GET':
-            
                 doctors = User.get_doctor()
-                
                 return render_template("search.html" , user=user, doctors=doctors)
         
-        
         if request.method == 'POST':
-            
-            
                 if not request.form['position'] or request.form['position'] == 'all':
                         position = 'all'
-                        
                 else:
                         position = request.form['position']
-                    
                 if not request.form['fullName']:
                         fullName = 'all'
-                        
                 else:
                         fullName = request.form['fullName']+ '%'
-                    
-                    
+                        
                 if fullName == 'all' and position =='all':
                         doctors = User.get_doctor()
-                
                 elif fullName =='all' and position != 'all':
                         doctors = User.get_doctor_by_position({'position': position})
-                    
                 elif fullName !='all' and position == 'all':
                         doctors = User.get_doctor_by_fullName({'fullName': fullName})
-                    
                 elif fullName !='all' and position != 'all':
                         data = {
                             'position' : position,
                             'fullName' : fullName
                         }
-                        
                         doctors = User.get_doctor_by_fullName_and_position(data)
-                
                 
                 return render_template("search.html" , user=user, doctors=doctors)
 
@@ -99,9 +85,9 @@ def finddoctor():
 # create new appointment
 @app.route("/appointment/new", methods=["POST"])
 def new_appointment():
-    
-        check_patient(session)
-        
+        check = check_patient(session)
+        if check:
+                return check
         data = {
             "department": request.form["department"],
             "doctor": request.form["doctor"],
@@ -119,16 +105,15 @@ def new_appointment():
         
         Appointment.create_appointment(data)
         flash("Appointment created successfully", "success")
-        
         return redirect(request.referrer)
 
 
 # make payment for package
 @app.route('/checkout/paypal/<int:id>')
 def checkoutPaypal(id):
-        
-        check_patient(session)
-        
+        check = check_patient(session)
+        if check:
+                return check
         package = Package.get_package_by_id({'id': id})
         totalPrice = package['price']
 
@@ -176,7 +161,10 @@ def checkoutPaypal(id):
 # payment success
 @app.route("/success", methods=["GET"])
 def paymentSuccess():
-    
+        check = check_patient(session)
+        if check:
+                return check
+        
         payment_id = request.args.get('paymentId', '')
         payer_id = request.args.get('PayerID', '')
         
@@ -219,5 +207,9 @@ def paymentSuccess():
 # payment cancel
 @app.route("/cancel", methods=["GET"])
 def paymentCancel():
+        check = check_patient(session)
+        if check:
+                return check
+        
         flash('Payment was canceled', 'paymentCanceled')
         return redirect('/')

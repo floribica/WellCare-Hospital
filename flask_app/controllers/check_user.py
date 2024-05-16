@@ -18,55 +18,49 @@ PHARMACIST_ROLE = os.getenv("PHARMACIST_ROLE")
 # check if user is logged in and if user is admin
 def check_admin(session):
         if "user_id" not in session:
-                return redirect("/check")
-        
-        user = User.get_user_by_id({"id": session['user_id']})
-        
-        if user['role'] != ADMIN_ROLE:
                 return redirect("/")
+        user = User.get_user_by_id({"id": session['user_id']})
+        if user['role'] != ADMIN_ROLE:
+                return redirect("/check")
+        return None
 
 
 # check if user is logged in and if user is doctor
 def check_doctor(session):
         if "user_id" not in session:
                 return redirect("/check")
-        
         user = User.get_user_by_id({"id": session['user_id']})
-        
         if user['role'] != DOCTOR_ROLE:
-                return redirect("/")
-            
+                return redirect("/check")
+        return None
+
 
 # check if user is logged in and if user is nurse
 def check_nurse(session):
         if "user_id" not in session:
                 return redirect("/check")
-        
         user = User.get_user_by_id({"id": session['user_id']})
-        
         if user['role'] != NURSE_ROLE:
-                return redirect("/")
+                return redirect("/check")
+        return None
 
 
 # check if user is logged in and if user is patient
 def check_patient(session):
         if "user_id" not in session:
                 return redirect("/check")
-        
         user = User.get_user_by_id({"id": session['user_id']})
-        
         if user['role'] != PATIENT_ROLE:
-                return redirect("/")
-            
+                return redirect("/check")
+        return None
+
 
 # check if user is logged in and if user is pharmacist
 def check_pharmacist(session):
         if "user_id" not in session:
                 return redirect("/check")
-        
         user = User.get_user_by_id({"id": session['user_id']})
-        
         if user['role'] != PHARMACIST_ROLE:
-                return redirect("/")
-            
+                return redirect("/check")
+        return None
             

@@ -1,7 +1,9 @@
-from flask import flash
-from flask_app.config.mysqlconnection import connectToMySQL
-from dotenv import load_dotenv
 import os
+
+from flask import flash
+from dotenv import load_dotenv
+
+from flask_app.config.mysqlconnection import connectToMySQL
 
 
 load_dotenv()

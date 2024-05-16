@@ -32,7 +32,7 @@
     <link href="../static/css/style.css" rel="stylesheet">
 </head>
 
-<body>
+<body style="background-color: #d7f3fa;">
     <!-- Spinner Start -->
     <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
@@ -82,6 +82,7 @@
                                         <th scope="col">Treatment Plan</th>
                                         <th scope="col">Medical Report</th>
                                         <th scope="col">Summary</th>
+                                        <th scope="col">Doctor</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -92,6 +93,7 @@
                                         <td>{{cartel.treatment}}</td>
                                         <td>{{cartel.medicalReport}}</td>
                                         <td>{{cartel.summary}}</td>
+                                        <td>{{cartel.fullName}}</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
@@ -128,8 +130,8 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="birthday" class="form-label">Birthday</label>
-                                        <input type="text" class="form-control" id="birthday" name="birthday" value="{{patient.birthday}}">
+                                        <label for="age" class="form-label">Age</label>
+                                        <input type="text" class="form-control" id="age" name="age" value="{{patient.age}}">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">

@@ -1,15 +1,16 @@
-import datetime
 import os
-from flask_app import app
+from datetime import datetime
+
 from flask import render_template, request, session, redirect, flash
+from flask_bcrypt import Bcrypt        
+from dotenv import load_dotenv
+import bcrypt
+from werkzeug.utils import secure_filename
+from flask import redirect, request, flash
+
+from flask_app import app
 from flask_app.models.news import News
 from flask_app.models.user import User
-from flask_bcrypt import Bcrypt        
-from werkzeug.utils import secure_filename
-from datetime import datetime
-from flask import redirect, request, flash
-import bcrypt
-from dotenv import load_dotenv
 
 bcrypt = Bcrypt(app)
 
@@ -27,36 +28,28 @@ PHARMACIST_ROLE = os.getenv("PHARMACIST_ROLE")
 # open the dashboard page
 @app.route("/dashboard")
 def dashboard():
-    
         if "user_id" in session:
                 return redirect("/")
-        
         doctor = User.get_total_nr_of_doctors()
         patient = User.get_total_nr_of_patients()
         news = News.get_all_news()
-        
         return render_template("index.html" , doctor=doctor, patient=patient , news=news)
 
 
 # check if I have a user in session and redirect to the correct page
 @app.route("/check")
 def check():
-    
         if "user_id" in session:
                 return redirect("/")
-            
         return redirect("/dashboard")
 
 
 # check which role the user has and redirect to the correct page
 @app.route("/")
 def index():
-    
         if "user_id" not in session:
                 return redirect("/check")
-        
         user=User.get_user_by_id({"id": session["user_id"]})
-        
         if user:
                 if user['role'] == ADMIN_ROLE:
                         return redirect("/admin")
@@ -68,7 +61,6 @@ def index():
                         return redirect("/nurse")
                 elif user['role'] == PHARMACIST_ROLE:
                         return redirect("/pharmacist")
-        
         session.clear()
         return redirect(request.referrer)
 
@@ -76,56 +68,43 @@ def index():
 # open login page
 @app.route("/login")
 def login():
-    
         if "user_id" in session:
                 return redirect("/")
-        
         return render_template("login.html")
 
 
 # process login
 @app.route("/login/process", methods=["POST"])
 def login_process():
-    
         if "user_id" in session:
                 return redirect("/")
-            
         user = User.get_user_by_username({"username": request.form["username"]})
-        
         if not user:
                 flash("User doesn't exist", "userlogin")
                 return redirect(request.referrer)
-            
         if not bcrypt.check_password_hash(user['password'], request.form['password']):
                 flash("Password is incorrect", "passlogin")
                 return redirect(request.referrer)
-            
         session['user_id'] = user['id']
-        
         return redirect("/")
 
 
 # logout
 @app.route("/logout")
 def logout():
-   
         session.clear()
-        
         return redirect("/check")
 
 
 # add user profile
 @app.route("/profile/info", methods=["POST"])
 def profile_info():
-    
         if "user_id" not in session:
                 return redirect("/check")
-            
         info = User.get_user_by_id({"id": session['user_id']})
         
         if info:
                 return redirect(request.referrer)
-            
         data = {
             "birthday": request.form["birthday"],
             "age": request.form["age"],
@@ -137,12 +116,9 @@ def profile_info():
             "position": request.form["position"],
             "gender": request.form["gender"]
         }
-        
         if not User.validate_user_info(data):
                 return redirect(request.referrer)
-            
         User.create_user_info(data)
-        
         return redirect(request.referrer)
 
 
@@ -165,7 +141,6 @@ def profile_update():
         }
         
         User.update_user_info(data)
-        
         return redirect(request.referrer)
 
 
@@ -195,12 +170,9 @@ def page_not_found(e):
 # add profile picture
 @app.route("/add/photo", methods=["POST"])
 def add_photo():
-    
         if "user_id" not in session:
             return redirect("/check")
-        
         data = { "id": session['user_id'] }
-        
         if 'image' in request.files:
             image = request.files['image']
             
@@ -218,31 +190,24 @@ def add_photo():
                             return redirect(request.referrer)
             
         User.add_profil_pic(data)   
-        
         return redirect(request.referrer)
 
 
 # show profile of a user
 @app.route("/profile/<int:id>")
 def showProfile(id):
-    
         if "user_id" not in session:
                 return redirect("/check")
-            
         user=User.get_user_by_id({"id": id})
-        
         return render_template("showprofile.html", user=user)
 
 
 # reset password
 @app.route("/reset/<int:id>")
 def reset(id):
-    
         if "user_id" not in session:
                 return redirect("/check")
-            
         user=User.get_user_by_id({"id": id})
-        
         return render_template("reset.html", user=user)
 
 
@@ -277,8 +242,4 @@ def reset_password():
         }
         
         User.reset_my_password(data2)
-        
         return redirect("/")
-
-    
-    

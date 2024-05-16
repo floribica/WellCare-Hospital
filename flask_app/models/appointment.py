@@ -1,7 +1,9 @@
-from flask import flash
-from flask_app.config.mysqlconnection import connectToMySQL
-from dotenv import load_dotenv
 import os
+
+from flask import flash
+from dotenv import load_dotenv
+
+from flask_app.config.mysqlconnection import connectToMySQL
 
 
 load_dotenv()
@@ -19,31 +21,33 @@ class Appointment:
                 self.checked = data['checked']
             
         
-        
         #create a new appointment
         @classmethod
         def create_appointment(cls, data):
-            
                 query = "INSERT INTO appointments (department, doctor, fullName, email, user_id) VALUES (%(department)s, %(doctor)s, %(fullName)s, %(email)s, %(user_id)s);"
-            
                 return connectToMySQL(cls.db_name).query_db(query, data)
-        
         
         
         #check if the user already has an appointment with this doctor in same date 
         @classmethod
         def check_appointment(cls, data):
-           
                 query = "SELECT * FROM appointments WHERE user_id = %(user_id)s AND doctor = %(doctor)s;"
-            
                 results = connectToMySQL(cls.db_name).query_db(query, data)
-            
                 if results and results[0]['checked'] == 0:
                         return False
-                
                 return True
         
-            
+        
+        #get all appointments for the doctor
+        @classmethod
+        def get_all_appointments(cls, data):
+                query = "SELECT * FROM appointments WHERE doctor = %(doctor_id)s;"
+                results = connectToMySQL(cls.db_name).query_db(query, data)
+                appointments = []
+                for appointment in results:
+                        appointments.append(appointment)
+                return appointments
+        
         
         #validate appointment
         @staticmethod
@@ -65,3 +69,4 @@ class Appointment:
                         is_valid = False
                         
                 return is_valid
+        

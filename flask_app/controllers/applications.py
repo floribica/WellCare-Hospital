@@ -1,11 +1,11 @@
-from flask_app import app
 from flask import request, session, redirect, flash
+
+from flask_app import app
 from flask_app.models.application import Application
 
 
 @app.route("/application", methods=["POST"])
 def application():
-
         if "user_id" in session:
                 return redirect("/check")
         
@@ -19,7 +19,5 @@ def application():
                 return redirect(request.referrer)
         
         Application.create_application(data)
-        
         flash("Application submitted successfully!", "applicationSuccess")
-        
         return redirect("/")
