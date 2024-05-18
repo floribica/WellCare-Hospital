@@ -90,6 +90,12 @@ section .signin .content h2
   color: rgba(0, 98, 255, 0.907);
   text-transform: uppercase;
 }
+section .signin .content h3 
+{
+  font-size: 1.9em;
+  color: rgba(0, 98, 255, 0.907);
+  text-transform: uppercase;
+}
 section .signin .content .form 
 {
   width: 100%;

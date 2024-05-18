@@ -86,7 +86,7 @@
 
 
         <div class="signin">
-            <form class="form" action="/login/process" method="post">
+            <form class="form" action="/confirmCode_process" method="post">
                 <div class="content">
 
 
@@ -96,7 +96,7 @@
 
                         <div class="inputBox">
 
-                            <input type="text" name="username" required> <i>Username</i>
+                            <input type="text" name="confirm_code" required> <i>Confirm Code</i>
 
                         </div>
                         {% with messages = get_flashed_messages(category_filter=["userlogin"]) %}
@@ -110,11 +110,11 @@
                         {% endwith %}
 
                         <div class="inputBox">
-
-                            <input type="password" name="password" required> <i>Password</i>
+                            <input type="hidden" name="email" value="{{ forgot_password.email }}">
+                            <input type="hidden" name="username" value="{{ forgot_password.username }}">
 
                         </div>
-                        {% with messages = get_flashed_messages(category_filter=["passlogin"]) %}
+                        {% with messages = get_flashed_messages(category_filter=["usname"]) %}
                         {% if messages %}
 
                         {% for message in messages %}
@@ -124,7 +124,7 @@
                         {% endif %}
                         {% endwith %}
 
-                        <div class="links"> <a href="/forgotPassword">Forgot Password</a> <a href="/">Go Back</a>
+                        <div class="links"> <a href="/login">Sign In</a> <a href="/">Home</a>
 
                         </div>
 

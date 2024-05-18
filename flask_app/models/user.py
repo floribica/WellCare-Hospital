@@ -264,6 +264,12 @@ class User:
                 return connectToMySQL(cls.db_name).query_db(query, data)
         
         
+        @classmethod
+        def edit_password(cls, data):
+                query = "UPDATE users SET password = %(password)s WHERE username = %(username)s;"
+                return connectToMySQL(cls.db_name).query_db(query, data)
+        
+        
         #validate user
         @staticmethod
         def validate_user(data):
@@ -278,6 +284,15 @@ class User:
                         flash("Email must be at least 3 characters.", "emailregister")
                         is_valid = False
                 return is_valid
+        
+        
+        @classmethod
+        def get_user_by_email_and_username(cls, data):
+                query = "SELECT * FROM users WHERE email = %(email)s AND username = %(username)s;"
+                results = connectToMySQL(cls.db_name).query_db(query, data)
+                if results:
+                        return results[0]
+                return False
         
         
         #validate user info
