@@ -1,18 +1,17 @@
-import math
+import os
 import random
 import smtplib
-import os
 
+from dotenv import load_dotenv
 from flask import render_template, request, session, redirect
 from flask_bcrypt import Bcrypt
-from dotenv import load_dotenv
 
 from flask_app import app
+from flask_app.controllers.check_user import check_admin
 from flask_app.models.application import Application
 from flask_app.models.forgot_password import ForgotPassword
 from flask_app.models.news import News
 from flask_app.models.user import User
-from flask_app.controllers.check_user import check_admin
 
 bcrypt = Bcrypt(app)
 
@@ -37,7 +36,7 @@ def generate_random_string(length):
 def send_email(to_addr, subject, html_content):
     sender = f"{COMPANY_NAME} <{ADMINEMAIL}>"
     msg = f"From: {sender}\r\nTo: {to_addr}\r\nSubject: {subject}\r\nContent-Type: text/html\r\n\r\n{html_content}"
-    
+
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.set_debuglevel(1)
     server.ehlo()
@@ -120,7 +119,7 @@ def register_process():
         "password": bcrypt.generate_password_hash(password)
     }
     User.create_user(data)
-    
+
     msg = f"""
     <html>
     <head>
@@ -200,7 +199,7 @@ def register_process():
     </html>
     """
     send_email(request.form['email'], "Your username and password", msg)
-    
+
     return redirect("/")
 
 
@@ -227,8 +226,7 @@ def forgotPassword_process():
         "confirm_code": bcrypt.generate_password_hash(confirm_code)
     }
     ForgotPassword.create_forgot_password(forgot_password_data)
-    
-    
+
     msg = f"""
     <html>
     <head>
@@ -312,101 +310,101 @@ def forgotPassword_process():
 
 @app.route("/confirmCode_process", methods=["POST"])
 def confirmCode_process():
-        username = request.form["username"]
-        email = request.form["email"]
-        confirm_code = request.form["confirm_code"]
-        forgot_password = ForgotPassword.get_last_forgot_password_by_username({"username": username})
-        if not forgot_password or not bcrypt.check_password_hash(forgot_password["confirm_code"], confirm_code):
-                return redirect(request.referrer)
-        password = generate_random_string(10)
-        data = {
-                "username": username,
-                "password": bcrypt.generate_password_hash(password)
-        }
-        User.edit_password(data)
-        
-        msg = f"""
-        <html>
-        <head>
-                <style>
-                        body {{
-                                font-family: Arial, sans-serif;
-                                color: #333;
-                                line-height: 1.6;
-                        }}
-                        .container {{
-                                padding: 20px;
-                                border: 1px solid #ddd;
-                                border-radius: 8px;
-                                background-color: #f5f5f5;
-                                width: 80%;
-                                margin: auto;
-                        }}
-                        .header {{
-                                background-color: #4CAF50;
-                                color: white;
-                                padding: 10px;
-                                text-align: center;
-                                border-radius: 8px 8px 0 0;
-                        }}
-                        .content {{
-                                padding: 20px;
-                        }}
-                        table {{
-                                width: 100%;
-                                border-collapse: collapse;
-                                margin-top: 20px;
-                        }}
-                        td {{
-                                padding: 10px;
-                                border: 1px solid #ddd;
-                        }}
-                        .highlight {{
-                                background-color: #f9f9f9;
-                        }}
-                        .warning {{
-                                color: #d9534f;
-                        }}
-                        .footer {{
-                                margin-top: 20px;
-                                font-size: 0.9em;
-                                color: #777;
-                        }}
-                </style>
-        </head>
-        <body>
-                <div class="container">
-                        <div class="header">
-                                <h1>Welcome to WellCare Hospital</h1>
-                        </div>
-                        <div class="content">
-                                <p>Hello,</p>
-                                <p>Your new password is:</p>
-                                <table>
-                                                <tr>
-                                                        <td><strong>Username:</strong></td>
-                                                        <td>{username}</td>
-                                                </tr>
-                                                <tr class="highlight">
-                                                        <td><strong>Password:</strong></td>
-                                                        <td>{password}</td>
-                                                </tr>
-                                                
-                                </table>
-                                <p class="warning">Please change your password after you log in.</p>
-                                <p>Best regards,</p>
-                                <p><em>WellCare Hospital</em></p>
-                        </div>
-                        <div class="footer">
-                        <p>This email was sent automatically. Please do not reply.</p>
-                        </div>
-                </div>
-        </body>
-        </html>
-        """
-        send_email(email, "Your new password", msg)
-        
-        return redirect("/dashboard")
+    username = request.form["username"]
+    email = request.form["email"]
+    confirm_code = request.form["confirm_code"]
+    forgot_password = ForgotPassword.get_last_forgot_password_by_username({"username": username})
+    if not forgot_password or not bcrypt.check_password_hash(forgot_password["confirm_code"], confirm_code):
+        return redirect(request.referrer)
+    password = generate_random_string(10)
+    data = {
+        "username": username,
+        "password": bcrypt.generate_password_hash(password)
+    }
+    User.edit_password(data)
+
+    msg = f"""
+    <html>
+    <head>
+            <style>
+                    body {{
+                            font-family: Arial, sans-serif;
+                            color: #333;
+                            line-height: 1.6;
+                    }}
+                    .container {{
+                            padding: 20px;
+                            border: 1px solid #ddd;
+                            border-radius: 8px;
+                            background-color: #f5f5f5;
+                            width: 80%;
+                            margin: auto;
+                    }}
+                    .header {{
+                            background-color: #4CAF50;
+                            color: white;
+                            padding: 10px;
+                            text-align: center;
+                            border-radius: 8px 8px 0 0;
+                    }}
+                    .content {{
+                            padding: 20px;
+                    }}
+                    table {{
+                            width: 100%;
+                            border-collapse: collapse;
+                            margin-top: 20px;
+                    }}
+                    td {{
+                            padding: 10px;
+                            border: 1px solid #ddd;
+                    }}
+                    .highlight {{
+                            background-color: #f9f9f9;
+                    }}
+                    .warning {{
+                            color: #d9534f;
+                    }}
+                    .footer {{
+                            margin-top: 20px;
+                            font-size: 0.9em;
+                            color: #777;
+                    }}
+            </style>
+    </head>
+    <body>
+            <div class="container">
+                    <div class="header">
+                            <h1>Welcome to WellCare Hospital</h1>
+                    </div>
+                    <div class="content">
+                            <p>Hello,</p>
+                            <p>Your new password is:</p>
+                            <table>
+                                            <tr>
+                                                    <td><strong>Username:</strong></td>
+                                                    <td>{username}</td>
+                                            </tr>
+                                            <tr class="highlight">
+                                                    <td><strong>Password:</strong></td>
+                                                    <td>{password}</td>
+                                            </tr>
+                                            
+                            </table>
+                            <p class="warning">Please change your password after you log in.</p>
+                            <p>Best regards,</p>
+                            <p><em>WellCare Hospital</em></p>
+                    </div>
+                    <div class="footer">
+                    <p>This email was sent automatically. Please do not reply.</p>
+                    </div>
+            </div>
+    </body>
+    </html>
+    """
+    send_email(email, "Your new password", msg)
+
+    return redirect("/dashboard")
 
 
 @app.route("/view/<int:id>")

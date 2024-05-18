@@ -125,7 +125,8 @@
     transform: scale(0);
     transition: .3s;
 }
-a{
+
+a {
     text-decoration: none;
     color: var(--card-color);
 
@@ -142,8 +143,6 @@ a{
     color: var(--blub-color);
     cursor: pointer;
 }
-
-
 
 
 .card div button {
@@ -182,6 +181,7 @@ a{
     color: var(--blub-color);
     cursor: pointer;
 }
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .card {

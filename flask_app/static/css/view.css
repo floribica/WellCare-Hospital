@@ -99,7 +99,7 @@ hr {
     padding: 0 0 0 12px;
     border-radius: 5px;
     outline: none;
-    border: 1px solid  rgb(16, 86, 82);
+    border: 1px solid rgb(16, 86, 82);
     background-color: rgb(251, 243, 228);
     transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
 }

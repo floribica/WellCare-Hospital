@@ -6,19 +6,20 @@ import pymysql.cursors
 class MySQLConnection:
     def __init__(self, db):
         # change the user and password as needed
-        connection = pymysql.connect(host = 'localhost',
-                                    user = 'root', 
-                                    password = 'password', 
-                                    db = db,
-                                    charset = 'utf8mb4',
-                                    cursorclass = pymysql.cursors.DictCursor,
-                                    autocommit = False)
+        connection = pymysql.connect(
+            host='localhost',
+            user='root',
+            password='password',
+            db=db,
+            charset='utf8mb4',
+            cursorclass=pymysql.cursors.DictCursor,
+            autocommit=False
+        )
         # establish the connection to the database
         self.connection = connection
-        
-        
+
     # the method to query the database
-    def query_db(self, query:str, data:dict=None):
+    def query_db(self, query: str, data: dict = None):
         with self.connection.cursor() as cursor:
             try:
                 query = cursor.mogrify(query, data)
@@ -43,8 +44,8 @@ class MySQLConnection:
             finally:
                 # close the connection
                 self.connection.close() 
-                
-                
+
+
 # connectToMySQL receives the database we're using and uses it to create an instance of MySQLConnection
 def connectToMySQL(db):
     return MySQLConnection(db)

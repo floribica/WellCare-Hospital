@@ -1,16 +1,17 @@
 import os
 
-from flask import flash
 from dotenv import load_dotenv
+from flask import flash
 
 from flask_app.config.mysqlconnection import connectToMySQL
-
 
 load_dotenv()
 DB_NAME = os.getenv("DB_NAME")
 
+
 class Patient_Cartel:
     db_name = DB_NAME
+
     def __init__(self, data):
         self.id = data['id']
         self.examinate = data['examinate']
@@ -20,8 +21,7 @@ class Patient_Cartel:
         self.writer = data['writer']
         self.patient_id = data['patient_id']
         self.created_at = data['created_at']
-        
-        
+
     @classmethod
     def get_cartel_by_id(cls, data):
         query = "SELECT * FROM patient_cartels LEFT JOIN users ON patient_cartels.writer = users.id WHERE patient_id = %(patient_id)s;"
@@ -31,12 +31,10 @@ class Patient_Cartel:
             cartels.append(cartel)
         return cartels
 
-
     @classmethod
     def insert_cartel(cls, data):
         query = "INSERT INTO patient_cartels (examinate, treatment, medicalReport, summary, writer, patient_id) VALUES (%(examinate)s, %(treatment)s, %(medicalReport)s, %(summary)s, %(writer)s, %(patient_id)s);"
         return connectToMySQL(DB_NAME).query_db(query, data)
-
 
     @staticmethod
     def validate_cartel(data):
@@ -54,4 +52,3 @@ class Patient_Cartel:
             flash("Summary must be at least 3 characters.", "summary_error")
             is_valid = False
         return is_valid
-        

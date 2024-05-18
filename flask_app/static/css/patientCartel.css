@@ -21,9 +21,9 @@
     -ms-flex-pack: center;
     justify-content: center;
     color: #000;
-  }
-  
-  .cover {
+}
+
+.cover {
     top: 0;
     position: absolute;
     background-color: #008cff;
@@ -47,17 +47,17 @@
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-  }
-  
-  .book:hover .cover {
+}
+
+.book:hover .cover {
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
     -webkit-transform: rotatey(-80deg);
     -ms-transform: rotatey(-80deg);
     transform: rotatey(-80deg);
-  }
-  
-  p {
+}
+
+p {
     font-size: 20px;
     font-weight: bolder;
-  }
+}
