@@ -2,6 +2,7 @@ from flask import render_template, session
 
 from flask_app import app
 from flask_app.controllers.check_user import check_nurse
+from flask_app.models.testimonial import Testimonial
 from flask_app.models.user import User
 
 
@@ -11,4 +12,5 @@ def nurse():
     if check:
         return check
     user = User.get_user_by_id({"id": session['user_id']})
-    return render_template("nurse.html", user=user)
+    testimonials = Testimonial.get_all_testimonials()
+    return render_template("nurse/nurse.html", user=user, testimonials=testimonials)

@@ -33,7 +33,7 @@ def dashboard():
     doctor = User.get_total_nr_of_doctors()
     patient = User.get_total_nr_of_patients()
     news = News.get_all_news()
-    return render_template("index.html", doctor=doctor, patient=patient, news=news)
+    return render_template("index/index.html", doctor=doctor, patient=patient, news=news)
 
 
 # check if I have a user in session and redirect to the correct page
@@ -70,7 +70,7 @@ def index():
 def login():
     if "user_id" in session:
         return redirect("/")
-    return render_template("login.html")
+    return render_template("index/login.html")
 
 
 # process login
@@ -94,6 +94,14 @@ def login_process():
 def logout():
     session.clear()
     return redirect("/check")
+
+
+@app.route("/profile")
+def profile():
+    if "user_id" not in session:
+        return redirect("/check")
+    user = User.get_user_by_id({"id": session['user_id']})
+    return render_template("index/profile.html", user=user)
 
 
 # add user profile
@@ -152,15 +160,15 @@ def page_not_found(e):
     user = User.get_user_by_id({"id": session['user_id']})
 
     if user['role'] == DOCTOR_ROLE:
-        return render_template('404_doctor.html')
+        return render_template('doctor/404_doctor.html')
     elif user['role'] == NURSE_ROLE:
         return render_template('404_nurse.html')
     elif user['role'] == PATIENT_ROLE:
-        return render_template('404_patient.html')
+        return render_template('patient/404_patient.html')
     elif user['role'] == PHARMACIST_ROLE:
         return render_template('404_pharmacist.html')
     elif user['role'] == ADMIN_ROLE:
-        return render_template('404.html')
+        return render_template('admin/404.html')
 
     return render_template('/')
 
@@ -197,7 +205,7 @@ def showProfile(id):
     if "user_id" not in session:
         return redirect("/check")
     user = User.get_user_by_id({"id": id})
-    return render_template("showprofile.html", user=user)
+    return render_template("index/showprofile.html", user=user)
 
 
 # reset password
@@ -206,7 +214,7 @@ def reset(id):
     if "user_id" not in session:
         return redirect("/check")
     user = User.get_user_by_id({"id": id})
-    return render_template("reset.html", user=user)
+    return render_template("index/reset.html", user=user)
 
 
 # process reset password

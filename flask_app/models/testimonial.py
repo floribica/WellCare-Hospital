@@ -25,7 +25,7 @@ class Testimonial:
     # get all testimonials with user info
     @classmethod
     def get_all_testimonials(cls):
-        query = "SELECT * FROM testimonials JOIN users ON testimonials.user_id = users.id;"
+        query = "SELECT testimonials.*, users.fullName, users.image FROM testimonials JOIN users ON testimonials.user_id = users.id;"
         results = connectToMySQL(cls.db_name).query_db(query)
         testimonials = []
         for testimonial in results:

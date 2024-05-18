@@ -52,3 +52,21 @@ class Package:
         if results:
             return results[0]
         return False
+
+
+    @classmethod
+    def get_contents_by_package_id(cls, data):
+        query = "SELECT * FROM contents WHERE package_id = %(package_id)s;"
+        results = connectToMySQL(cls.db_name).query_db(query, data)
+        if results:
+            return results
+        return False
+    
+    
+    @classmethod
+    def get_all_patient_packages(cls, data):
+        query = "SELECT * FROM payments LEFT JOIN packages ON payments.package_id = packages.id WHERE user_id = %(user_id)s;"
+        results = connectToMySQL(cls.db_name).query_db(query, data)
+        if results:
+            return results
+        return False

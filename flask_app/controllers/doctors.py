@@ -25,18 +25,16 @@ def doctor():
     mydoctor = User.get_doctor()
     testimonials = Testimonial.get_all_testimonials()
 
-    return render_template("doctor.html", user=user, doctor=doctor, staff=staff, patients=patients, news=news,
-                           mydoctor=mydoctor, testimonials=testimonials)
-
-
-# open doctor profile
-@app.route("/profile")
-def profile():
-    check = check_doctor(session)
-    if check:
-        return check
-    user = User.get_user_by_id({"id": session['user_id']})
-    return render_template("profile.html", user=user)
+    return render_template(
+        "doctor/doctor.html",
+        user=user,
+        doctor=doctor,
+        staff=staff,
+        patients=patients,
+        news=news,
+        mydoctor=mydoctor,
+        testimonials=testimonials
+    )
 
 
 # open patient cartels for the doctor
@@ -46,7 +44,7 @@ def cartel():
     if check:
         return check
     patients = User.get_all_patients()
-    return render_template("patientCartel.html", patients=patients)
+    return render_template("doctor/patientCartel.html", patients=patients)
 
 
 # open patient cartel for the doctor
@@ -78,12 +76,12 @@ def patient_info(id):
             Patient_Cartel.insert_cartel(data)
         patient = User.get_user_by_id({"id": id})
         cartels = Patient_Cartel.get_cartel_by_id({"patient_id": id})
-        return render_template("patient_info.html", patient=patient, cartels=cartels)
+        return render_template("doctor/patient_info.html", patient=patient, cartels=cartels)
     else:
         check_doctor(session)
         patient = User.get_user_by_id({"id": id})
         cartels = Patient_Cartel.get_cartel_by_id({"patient_id": id})
-        return render_template("patient_info.html", patient=patient, cartels=cartels)
+        return render_template("doctor/patient_info.html", patient=patient, cartels=cartels)
 
 
 # open colleague page
@@ -96,7 +94,7 @@ def colleague():
     pharmacists = User.get_all_pharmacists()
     nurses = User.get_all_nurses()
 
-    return render_template("colleague.html", doctors=doctors, pharmacists=pharmacists, nurses=nurses)
+    return render_template("doctor/colleague.html", doctors=doctors, pharmacists=pharmacists, nurses=nurses)
 
 
 # open appointment page
@@ -107,7 +105,7 @@ def appointment():
         return check
     appointments = Appointment.get_all_appointments({"doctor_id": session['user_id']})
     shifts = Shift.get_shift_by_user_id({"id": session['user_id']})
-    return render_template("appointment.html", appointments=appointments, shifts=shifts)
+    return render_template("doctor/appointment.html", appointments=appointments, shifts=shifts)
 
 
 # confirm shift

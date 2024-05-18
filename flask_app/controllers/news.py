@@ -60,7 +60,7 @@ def edit_news(id):
     if check:
         return check
     news = News.get_news_by_id({"id": id})
-    return render_template("viewnews.html", news=news)
+    return render_template("news/viewnews.html", news=news)
 
 
 # edit news
@@ -70,7 +70,7 @@ def update_news(id):
     if check:
         return check
     news = News.get_news_by_id({"id": id})
-    return render_template("editnews.html", news=news)
+    return render_template("news/editnews.html", news=news)
 
 
 # post edit news

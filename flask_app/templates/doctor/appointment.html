@@ -80,7 +80,8 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                             <tr>
-                                <th scope="col">Date</th>
+                                <th scope="col">Appointment Date</th>
+                                <th scope="col">Appointment Time</th>
                                 <th scope="col">Full Name</th>
                                 <th scope="col">Send Email</th>
                                 <th scope="col">Action</th>
@@ -89,7 +90,8 @@
                             <tbody>
                             {% for appointement in appointments %}
                                 <tr>
-                                    <td>{{ appointement.created_at }}</td>
+                                    <td>{{ appointement.appointment_date }}</td>
+                                    <td>{{ appointement.appointment_time }}</td>
                                     <td>{{ appointement.fullName }}</td>
                                     <td>{{ appointement.email }}</td>
                                     <td>

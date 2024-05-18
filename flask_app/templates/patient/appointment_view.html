@@ -9,7 +9,7 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link rel="icon" href="../static/index/../static/patient/img/favicon.png">
+    <link rel="icon" href="../static/index/img/favicon.png">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -22,8 +22,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="../static/patient/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../static/patient/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../static/patient/css/bootstrap.min.css" rel="stylesheet">
@@ -45,17 +45,18 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="/" class="nav-item nav-link ">Home</a>
+                        <a href="/" class="nav-item nav-link">Home</a>
+                        <a href="/profile" class="nav-item nav-link">Profile</a>
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
-                                <a href="" class="dropdown-item">Cartel</a>
-                                <a href="" class="dropdown-item">Prescriptions</a>
-                                <a href="" class="dropdown-item">Appointments</a>
+                                <a href="/patient/cartel_view" class="dropdown-item">Cartel</a>
+                                <a href="/patient/prescription_view" class="dropdown-item ">Prescriptions</a>
+                                <a href="/patient/appointment_view" class="dropdown-item active">Appointments</a>
                             </div>
                         </div>
-                        <a href="/" class="nav-item nav-link">Pharmacy</a>
-                        <a href="/finddoctor" class="nav-item nav-link active">Search</a>
+                        <a href="/buy/medicine" class="nav-item nav-link">Pharmacy</a>
+                        <a href="/finddoctor" class="nav-item nav-link">Search</a>
                         <a href="#footer" class="nav-item nav-link">Contact</a>
                         <a href="/logout" class="nav-item nav-link">Logout</a>
                     </div>
@@ -65,77 +66,59 @@
     </div>
     <!-- Navbar End -->
 
-
-    <!-- Search Start -->
-    <div class="container-fluid pt-5">
-        <div class="container">
-            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
-                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Find A Doctor</h5>
-                <h1 class="display-4 mb-4">Find A Healthcare Professionals</h1>
-                <h5 class="fw-normal">Duo ipsum erat stet dolor sea ut nonumy tempor. Tempor duo lorem eos sit sed ipsum
-                    takimata ipsum sit est. Ipsum ea voluptua ipsum sit justo</h5>
-            </div>
-            <div class="mx-auto" style="width: 100%; max-width: 600px;">
-                <form action="/finddoctor" method="post">
-                <div class="input-group">
-                    <select class="form-select border-primary w-25" style="height: 60px;" name="position">
-                        <option selected value="all">all</option>
-                        <option value="cosmetic, plastic & reconstructive surgery">cosmetic, plastic & reconstructive surgery</option>
-                        <option value="2">Department 2</option>
-                        <option value="3">Department 3</option>
-                    </select>
-                    <input type="text" name="fullName" class="form-control border-primary w-50" placeholder="Keyword">
-                    <button class="btn btn-dark border-0 w-25">Search</button>
-                </div>
-            </form>
-            </div>
-        </div>
-    </div>
-    <!-- Search End -->
-
-
-    <!-- Search Result Start -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="row g-5">
-                {% for doctor in doctors %}
-                <div class="col-lg-6 team-item">
-                    <div class="row g-0 bg-light rounded overflow-hidden">
-                        <div class="col-12 col-sm-5 h-100">
-                            {% if doctor.image != None %}
-                            <img class="img-fluid h-100" src="../static/img/{{doctor.image}}"
-                                style="object-fit: cover;">
-                            {% else %}
-                            <img class="img-fluid h-100" src="../static/img/profilephoto.webp"
-                                style="object-fit: cover;">
-                            {% endif %}
-                        </div>
-                        <div class="col-12 col-sm-7 h-100 d-flex flex-column">
-                            <div class="mt-auto p-4">
-                                <h3>{{doctor.fullName}}</h3>
-                                {% if doctor.position != None %}
-                                <h6 class="fw-normal fst-italic text-primary mb-4">{{doctor.position}}</h6>
-                                {% else %}
-                                <h6 class="fw-normal fst-italic text-primary mb-4">New Here</h6>
-                                {% endif %}
-                                <p class="mb-4" style="font-size: x-small;">{{doctor.short_info}}</p>
-                            </div>
-                            <div class="d-flex mt-auto border-top p-4">
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="#"><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="#"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="#"><i
-                                        class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
+    <!-- Hero Start -->
+    <div class="container-fluid bg-primary py-5 mb-5 hero-header">
+        <div class="container py-5">
+            <div class="row justify-content-start">
+                <div class="col-lg-8 text-center text-lg-start">
+                    <h3 class="d-inline-block text-primary text-uppercase border-bottom border-5"
+                        style="border-color: rgba(256, 256, 256, .3) !important;">Welcome To WellCare Hospital</h3>
+                    <div class="pt-5">
+                        <h5 class="text-white">We provide the best medical service in the world. We are here to help you with your health. If you have any questions, don't hesitate to contact us. We are here to help you.</h5>
                     </div>
                 </div>
-                {% endfor %}
             </div>
         </div>
     </div>
-    <!-- Search Result End -->
+    <!-- Hero End -->
+
+    <!--Package display start-->
+    <div class="container-fluid bg-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1 class="text-primary">My Appointments</h1>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Appointment Date</th>
+                                    <th>Appointment Time</th>
+                                    <th>Department</th>
+                                    <th>Doctor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for appointment in appointments %}
+                                <tr>
+                                    <td>{{ appointment.appointment_date }}</td>
+                                    <td>{{ appointment.appointment_time }}</td>
+                                    <td>{{ appointment.department }}</td>
+                                    <td>{{appointment.doc_name}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Package display end-->
 
 
     <!-- Footer Start -->
@@ -223,7 +206,7 @@
             </div>
         </div>
     </div>
-    <!-- Footer End -->ƒ
+    <!-- Footer End -->
 
 
     <!-- Back to Top -->
