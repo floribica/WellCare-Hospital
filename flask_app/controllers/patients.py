@@ -150,6 +150,7 @@ def prescription_view():
     cartels = Patient_Cartel.get_cartel_by_id({"patient_id": session["user_id"]})
     return render_template("patient/prescription_view.html", cartels=cartels)
 
+
 @app.route("/patient/appointment_view")
 def appointment_view():
     check = check_patient(session)
@@ -159,7 +160,7 @@ def appointment_view():
     return render_template("patient/appointment_view.html", appointments=appointments)
 
 
-#TODO: refactor this to reuse code
+# TODO: refactor this to reuse code
 # make payment for package
 @app.route('/checkout/paypal/<int:id>')
 def checkoutPaypal(id):

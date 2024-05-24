@@ -194,7 +194,6 @@ def add_photo():
             else:
                 flash("File not allowed", "image")
                 return redirect(request.referrer)
-
     User.add_profil_pic(data)
     return redirect(request.referrer)
 

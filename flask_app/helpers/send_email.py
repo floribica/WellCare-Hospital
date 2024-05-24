@@ -25,11 +25,15 @@ def send_email(to_addr, subject, html_content):
 # Determine color based on the price
 def get_price_color(price):
     if price < 50:
-        return "#27ae60"  # Green
-    elif price < 100:
-        return "#f39c12"  # Orange
+        return "#27ae60"
+    elif price < 100 and price >= 50:
+        return "#f39c12"
+    elif price < 200 and price >= 100:
+        return "#6f32a8"
+    elif price < 300 and price >= 200:
+        return "#3498db"
     else:
-        return "#e74c3c"  # Red
+        return "#07bbe3"
 
 
 def package_email_html(package_name, package_price, contents_list):

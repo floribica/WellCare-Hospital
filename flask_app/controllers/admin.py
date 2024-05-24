@@ -184,7 +184,7 @@ def edit(id):
     if check:
         return check
     user = User.get_user_by_id({"id": id})
-    return render_template("edit/edit.html", user=user)
+    return render_template("admin/edit.html", user=user)
 
 
 @app.route("/edit/process/<int:id>", methods=["POST"])
