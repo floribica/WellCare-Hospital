@@ -37,12 +37,13 @@
 <body>
    <!-- header section start -->
    <div class="header_section">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <!-- navbar start-->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" style="justify-content: space-between;">
          <div class="logo d-flex">
             <a href="/"><img src="../../static/nurse/images/nurse_hospital_icon.png"></a>
             <h2 class="p-0 my-auto text-logo">WellCare-Hospital</h2>
          </div>
-         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <div id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                <li class="nav-item active">
                   <a class="nav-link" href="/">Home</a>
@@ -51,13 +52,10 @@
                   <a class="nav-link" href="/profile">Profile</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="medicine.html">Patients</a>
+                  <a class="nav-link" href="/nurse/patient">Patients</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="news.html">Appoinment</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="client.html">Colleague</a>
+                  <a class="nav-link" href="/nurse/colleagur">Colleague</a>
                </li>
                <li class="nav-item">
                   <a class="nav-link" href="/logout">Logout</a>
@@ -65,7 +63,6 @@
             </ul>
          </div>
       </nav>
-      <!-- header section end -->
       <!-- banner section start -->
       <div id="main_slider" class="carousel slide" data-ride="carousel">
          <div class="carousel-inner">
@@ -74,12 +71,7 @@
                   <div class="container">
                      <div class="row">
                         <div class="col-md-6">
-                           <h1 class="banner_taital">Health <br><span style="color: #151515;">Care</span></h1>
-                           <p class="banner_text">There are many variations of passages of Lorem Ipsum</p>
-                           <div class="btn_main">
-                              <div class="more_bt"><a href="#">Contact Now</a></div>
-                              <div class="contact_bt"><a href="#">Get A Quote</a></div>
-                           </div>
+                           <h1 class="banner_taital">Respektimi i <span style="color: black;">Integritetit</span> të Pacientit</h1>
                         </div>
                         <div class="col-md-6">
                            <div class="image_1"><img src="../../static/nurse/images/img-1.png"></div>
@@ -93,12 +85,7 @@
                   <div class="container">
                      <div class="row">
                         <div class="col-md-6">
-                           <h1 class="banner_taital">Health <br><span style="color: #151515;">Care</span></h1>
-                           <p class="banner_text">There are many variations of passages of Lorem Ipsum</p>
-                           <div class="btn_main">
-                              <div class="more_bt"><a href="#">Contact Now</a></div>
-                              <div class="contact_bt"><a href="#">Get A Quote</a></div>
-                           </div>
+                           <h1 class="banner_taital">Kujdesi i <br><span style="color: #151515;">Mbrojtjes</span> së Pacientit</h1>
                         </div>
                         <div class="col-md-6">
                            <div class="image_1"><img src="../../static/nurse/images/img-1.png"></div>
@@ -112,12 +99,7 @@
                   <div class="container">
                      <div class="row">
                         <div class="col-md-6">
-                           <h1 class="banner_taital">Health <br><span style="color: #151515;">Care</span></h1>
-                           <p class="banner_text">There are many variations of passages of Lorem Ipsum</p>
-                           <div class="btn_main">
-                              <div class="more_bt"><a href="#">Contact Now</a></div>
-                              <div class="contact_bt"><a href="#">Get A Quote</a></div>
-                           </div>
+                           <h1 class="banner_taital">Përgjegjësia dhe <br><span style="color: #151515;">Integriteti</span> Profesional</h1>
                         </div>
                         <div class="col-md-6">
                            <div class="image_1"><img src="../../static/nurse/images/img-1.png"></div>
@@ -139,123 +121,36 @@
    <!-- health section start -->
    <div class="health_section layout_padding">
       <div class="container">
-         <h1 class="health_taital">Best Of Health care for you</h1>
-         <p class="health_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
+         <h1 class="health_taital">Best Work Place for you</h1>
+         <p class="health_text">Here you will get the best quality of work. We are here to make your life easier. You are one of as now. </p>
          <div class="health_section layout_padding">
             <div class="row">
+               {%for nw in news%}
                <div class="col-sm-7">
                   <div class="image_main">
                      <div class="main">
-                        <img src="../../static/nurse/images/img-2.png" alt="Avatar" class="image" style="width:100%">
+                        <img src="../../static/img/{{nw.image}}" alt="Avatar" class="image" style="width:100%">
                      </div>
                      <div class="middle">
-                        <div class="text"><img src="../../static/nurse/images/icon-1.png" style="width: 40px;"></div>
+                        <a href="{{nw.link}}" target="_blank" class="text"><img src="../../static/nurse/images/icon-1.png" style="width: 40px;"></a>
                      </div>
                   </div>
                </div>
-               <div class="col-sm-5">
-                  <div class="image_main_1">
-                     <div class="main">
-                        <img src="../../static/nurse/images/img-3.png" alt="Avatar" class="image" style="width:100%">
-                     </div>
-                     <div class="middle">
-                        <div class="text"><img src="../../static/nurse/images/icon-1.png" style="width: 40px;"></div>
-                     </div>
-                  </div>
-               </div>
+               {%endfor%}
             </div>
-            <div class="getquote_bt_1"><a href="#">Read More <span><img src="../../static/nurse/images/right-arrow.png"></span></a></div>
          </div>
       </div>
    </div>
    <!-- health section end -->
-   <!-- knowledge section end -->
-   <div class="knowledge_section layout_padding">
-      <div class="container">
-         <div class="knowledge_main">
-            <div class="left_main">
-               <h1 class="knowledge_taital">Knowledge of center</h1>
-               <p class="knowledge_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-            </div>
-            <div class="right_main">
-               <div class="play_icon"><a href="#"><img src="../../static/nurse/images/play-icon.png"></a></div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- knowledge section end -->
-   <!-- news section start -->
-   <div class="news_section layout_padding">
-      <div class="container">
-         <h1 class="health_taital">Why choose 24hr home care</h1>
-         <p class="health_text">labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-         <div class="news_section_2 layout_padding">
-            <div class="row">
-               <div class="col-lg-4 col-sm-6">
-                  <div class="box_main">
-                     <div class="icon_1"><img src="../../static/nurse/images/icon-2.png"></div>
-                     <h4 class="daily_text">Daily care experts</h4>
-                  </div>
-               </div>
-               <div class="col-lg-4 col-sm-6">
-                  <div class="box_main active">
-                     <div class="icon_1"><img src="../../static/nurse/images/icon-3.png"></div>
-                     <h4 class="daily_text_1">Available 24/7</h4>
-                  </div>
-               </div>
-               <div class="col-lg-4 col-sm-6">
-                  <div class="box_main">
-                     <div class="icon_1"><img src="../../static/nurse/images/icon-4.png"></div>
-                     <h4 class="daily_text_1">Balanced care</h4>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="getquote_bt"><a href="#">Get A Quote <span><img src="../../static/nurse/images/right-arrow.png"></span></a></div>
-      </div>
-   </div>
-   <!-- news section end -->
-   <!-- contact section start -->
-   <div class="contact_section layout_padding">
-      <div class="container">
-         <h1 class="contact_taital">What we do</h1>
-         <div class="news_section_2">
-            <div class="row">
-               <div class="col-md-6">
-                  <div class="icon_main">
-                     <div class="icon_7"><img src="../../static/nurse/images/icon-7.png"></div>
-                     <h4 class="diabetes_text">Diabetes and obesity Counselling </h4>
-                  </div>
-                  <div class="icon_main">
-                     <div class="icon_7"><img src="../../static/nurse/images/icon-5.png"></div>
-                     <h4 class="diabetes_text">Obstetrics and Gynsecology</h4>
-                  </div>
-                  <div class="icon_main">
-                     <div class="icon_7"><img src="../../static/nurse/images/icon-6.png"></div>
-                     <h4 class="diabetes_text">Surgical and medical Oncology</h4>
-                  </div>
-               </div>
-               <div class="col-md-6">
-                  <div class="contact_box">
-                     <h1 class="book_text">Book Appoinment</h1>
-                     <input type="text" class="Email_text" placeholder="Name" name="Name">
-                     <input type="text" class="Email_text" placeholder="Name" name="Name">
-                     <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="Massage"></textarea>
-                     <div class="send_bt"><a href="#">SEND</a></div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- contact section end -->
+
+
    <!-- client section start -->
-   <div class="client_section layout_padding">
+   <div class="client_section layout_padding" style="background-color: #cfeef0;">
       <div id="my_slider" class="carousel slide" data-ride="carousel">
          <div class="carousel-inner">
             {% for testimonial in testimonials %}
-            <div class="carousel-item {% if testimonial.id == 2 %}active{% endif %}">
-               <div class="container">
+            <div class="carousel-item {% if testimonial.id == 2 %}active{% endif %}" >
+               <div class="container bg-light">
                   <h1 class="client_taital">What People Say</h1>
                   <p class="client_text"> You can relay on our amazing features list and also our customer services will be great experience for you without doubt and in no-time</p>
                   <div class="client_section_2">
@@ -290,32 +185,17 @@
       <div class="container">
          <div class="row">
             <div class="col-lg-3 col-sm-6">
-               <div class="footer_logo"><a href="index.html"><img src="../../static/nurse/images/footer-logo.png"></a></div>
                <h1 class="adderss_text">Contact Us</h1>
-               <div class="map_icon"><img src="../../static/nurse/images/map-icon.png"><span class="paddlin_left_0">Page when looking at its</span></div>
                <div class="map_icon"><img src="../../static/nurse/images/call-icon.png"><span class="paddlin_left_0">+7586656566</span></div>
-               <div class="map_icon"><img src="../../static/nurse/images/mail-icon.png"><span class="paddlin_left_0">volim@gmail.com</span></div>
+               <div class="map_icon"><img src="../../static/nurse/images/mail-icon.png"><span class="paddlin_left_0">info@wellcare.com</span></div>
             </div>
             <div class="col-lg-3 col-sm-6">
-               <h1 class="adderss_text">Doctors</h1>
-               <div class="hiphop_text_1">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,</div>
+               <h1 class="adderss_text">About As</h1>
+               <div class="hiphop_text_1">WellCare: Committed to providing quality healthcare and promoting wellness for all. Your health is our priority.</div>
             </div>
             <div class="col-lg-3 col-sm-6">
                <h1 class="adderss_text">Useful Links</h1>
-               <div class="Useful_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered ,</div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-               <h1 class="adderss_text">Newsletter</h1>
-               <input type="text" class="Enter_text" placeholder="Enter your Emil" name="Enter your Emil">
-               <div class="subscribe_bt"><a href="#">Subscribe</a></div>
-               <div class="social_icon">
-                  <ul>
-                     <li><a href="#"><img src="../../static/nurse/images/fb-icon.png"></a></li>
-                     <li><a href="#"><img src="../../static/nurse/images/twitter-icon.png"></a></li>
-                     <li><a href="#"><img src="../../static/nurse/images/linkedin-icon.png"></a></li>
-                     <li><a href="#"><img src="../../static/nurse/images/instagram-icon.png"></a></li>
-                  </ul>
-               </div>
+               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18036.88360736806!2d19.690644289208606!3d40.946155487965974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1350044b45803b19%3A0xc82d34d700465883!2sSpitali!5e1!3m2!1sen!2s!4v1709038593067!5m2!1sen!2s" width="600" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
          </div>
       </div>
@@ -324,7 +204,7 @@
    <!-- copyright section start -->
    <div class="copyright_section">
       <div class="container">
-         <p class="copyright_text">2019 All Rights Reserved. Design by <a href="https://html.design">Free html Templates</a></p>
+         <p class="copyright_text">2024 All Rights Reserved. Design by <a href="">Flori Bica</a></p>
       </div>
    </div>
    <!-- copyright section end -->

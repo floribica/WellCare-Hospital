@@ -2,6 +2,7 @@ from flask import render_template, session
 
 from flask_app import app
 from flask_app.controllers.check_user import check_nurse
+from flask_app.models.news import News
 from flask_app.models.testimonial import Testimonial
 from flask_app.models.user import User
 
@@ -13,4 +14,43 @@ def nurse():
         return check
     user = User.get_user_by_id({"id": session['user_id']})
     testimonials = Testimonial.get_all_testimonials()
-    return render_template("nurse/nurse.html", user=user, testimonials=testimonials)
+    news = News.get_all_news()
+    return render_template(
+        "nurse/nurse.html",
+        user=user,
+        testimonials=testimonials,
+        news=news
+    )
+
+
+@app.route("/nurse/patient")
+def nurse_patients_cartel():
+    check = check_nurse(session)
+    if check:
+        return check
+    patients = User.get_all_patients()
+    return render_template("nurse/patients.html", patients=patients)
+
+
+@app.route("/nursePatient/<int:id>")
+def check_patient_cartel(id):
+    check = check_nurse(session)
+    if check:
+        return check
+    return render_template("nurse/patientCartel.html")
+
+
+@app.route("/nurse/colleagur")
+def nurse_colleagur():
+    check = check_nurse(session)
+    if check:
+        return check
+    doctors = User.get_all_doctors()
+    pharmacists = User.get_all_pharmacists()
+    nurses = User.get_all_nurses()
+    return render_template(
+        "nurse/colleague.html",
+        doctors=doctors,
+        pharmacists=pharmacists,
+        nurses=nurses
+    )
