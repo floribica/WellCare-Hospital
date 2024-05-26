@@ -25,7 +25,8 @@ class Application:
     @classmethod
     def create_application(cls, data):
 
-        query = "INSERT INTO applications (fullName, email, role) VALUES (%(fullName)s, %(email)s, %(role)s);"
+        query = ("INSERT INTO applications (fullName, email, role) "
+                 "VALUES (%(fullName)s, %(email)s, %(role)s);")
 
         return connectToMySQL(cls.db_name).query_db(query, data)
 

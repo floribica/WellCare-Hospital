@@ -44,43 +44,43 @@ def add_news():
 
 
 # delete news
-@app.route("/deletenews/<int:id>")
-def delete_news(id):
+@app.route("/deletenews/<int:news_id>")
+def delete_news(news_id):
     check = check_admin(session)
     if check:
         return check
-    News.delete_news({"id": id})
+    News.delete_news({"id": news_id})
     return redirect(request.referrer)
 
 
 # edit news
-@app.route("/viewnews/<int:id>")
-def edit_news(id):
+@app.route("/viewnews/<int:news_id>")
+def edit_news(news_id):
     check = check_admin(session)
     if check:
         return check
-    news = News.get_news_by_id({"id": id})
+    news = News.get_news_by_id({"id": news_id})
     return render_template("news/viewnews.html", news=news)
 
 
 # edit news
-@app.route("/editnews/<int:id>")
-def update_news(id):
+@app.route("/editnews/<int:news_id>")
+def update_news(news_id):
     check = check_admin(session)
     if check:
         return check
-    news = News.get_news_by_id({"id": id})
+    news = News.get_news_by_id({"id": news_id})
     return render_template("news/editnews.html", news=news)
 
 
 # post edit news
-@app.route("/posteditnews/<int:id>", methods=["POST"])
-def post_edit_news(id):
+@app.route("/posteditnews/<int:news_id>", methods=["POST"])
+def post_edit_news(news_id):
     check = check_admin(session)
     if check:
         return check
     data = {
-        "id": id,
+        "id": news_id,
         "title": request.form["title"],
         "description": request.form["description"],
         "link": request.form["link"],

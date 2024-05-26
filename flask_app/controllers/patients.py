@@ -8,7 +8,7 @@ from flask import render_template, request, session, redirect, flash, url_for
 
 from flask_app import app
 from flask_app.controllers.check_user import check_patient
-from flask_app.helpers.send_email import package_email_html, send_email
+from flask_app.helpers.send_email import package_email_html, send_email, get_appointment_email_html
 from flask_app.models.appointment import Appointment
 from flask_app.models.news import News
 from flask_app.models.package import Package
@@ -66,7 +66,9 @@ def find_doctor():
     user = User.get_user_by_id({"id": session["user_id"]})
     if request.method == 'GET':
         doctors = User.get_doctor()
-        return render_template("patient/search.html", user=user, doctors=doctors)
+        return render_template(
+            "patient/search.html", user=user, doctors=doctors
+        )
 
     if request.method == 'POST':
         if not request.form['position'] or request.form['position'] == 'all':
@@ -91,7 +93,9 @@ def find_doctor():
             }
             doctors = User.get_doctor_by_fullName_and_position(data)
 
-        return render_template("patient/search.html", user=user, doctors=doctors)
+        return render_template(
+            "patient/search.html", user=user, doctors=doctors
+        )
 
 
 # create new appointment
@@ -101,10 +105,14 @@ def new_appointment():
     if check:
         return check
     if request.form["appointment_date"] < str(datetime.now().date()):
-        flash("You can't make an appointment in the past", "appointment_date")
+        flash(
+            "You can't make an appointment in the past", "appointment_date"
+        )
         return redirect(request.referrer)
-    if request.form["appointment_time"] < str(datetime.now().time()):
-        flash("You can't make an appointment in the past", "appointment_time")
+    if not request.form["appointment_time"]:
+        flash(
+            "You can't make an appointment in the past", "appointment_time"
+        )
         return redirect(request.referrer)
     data = {
         "department": request.form["department"],
@@ -120,9 +128,20 @@ def new_appointment():
         return redirect("/")
 
     if not Appointment.check_appointment(data):
-        flash("You already have an appointment with this doctor", "appointmenterror")
+        flash(
+            "You already have an appointment with this doctor", "appointmenterror"
+        )
         return redirect(request.referrer)
 
+    doctor = User.get_user_by_id({"id": request.form["doctor"]})
+    message = get_appointment_email_html(
+        request.form["fullName"],
+        request.form["appointment_date"],
+        request.form["appointment_time"],
+        doctor["fullName"],
+    )
+    send_email(request.form["email"], "Appointment Confirmation", message)
+    send_email(doctor["email"], "Appointment Confirmation", message)
     Appointment.create_appointment(data)
     flash("Appointment created successfully", "success")
     return redirect(request.referrer)
@@ -148,7 +167,9 @@ def prescription_view():
     if check:
         return check
     cartels = Patient_Cartel.get_cartel_by_id({"patient_id": session["user_id"]})
-    return render_template("patient/prescription_view.html", cartels=cartels)
+    return render_template(
+        "patient/prescription_view.html", cartels=cartels
+    )
 
 
 @app.route("/patient/appointment_view")
@@ -157,7 +178,9 @@ def appointment_view():
     if check:
         return check
     appointments = Appointment.get_appointment_by_user_id({"user_id": session["user_id"]})
-    return render_template("patient/appointment_view.html", appointments=appointments)
+    return render_template(
+        "patient/appointment_view.html", appointments=appointments
+    )
 
 
 # TODO: refactor this to reuse code
@@ -190,22 +213,35 @@ def checkoutPaypal(id):
                 "description": "Payment for package"
             }],
             "redirect_urls": {
-                "return_url": url_for('paymentSuccess', _external=True, totalPrice=totalPrice, package_id=id),
+                "return_url": url_for(
+                    'paymentSuccess',
+                    _external=True,
+                    totalPrice=totalPrice,
+                    package_id=id
+                ),
                 "cancel_url": "http://example.com/cancel"
             }
         })
 
         if payment.create():
-            approval_url = next(link.href for link in payment.links if link.rel == 'approval_url')
+            approval_url = next(
+                link.href for link in payment.links if link.rel == 'approval_url'
+            )
 
             return redirect(approval_url)
 
         else:
-            flash('Something went wrong with your payment', 'creditCardDetails')
+            flash(
+                'Something went wrong with your payment',
+                'creditCardDetails'
+            )
             return redirect(request.referrer)
 
     except paypalrestsdk.ResourceNotFound as e:
-        flash('Something went wrong with your payment', 'creditCardDetails')
+        flash(
+            'Something went wrong with your payment',
+            'creditCardDetails'
+        )
         return redirect(request.referrer)
 
 
@@ -254,10 +290,14 @@ def paymentSuccess():
             package_price = package['price']
 
             # Retrieve package contents
-            package_contents = Package.get_contents_by_package_id({'package_id': package_id})
+            package_contents = Package.get_contents_by_package_id(
+                {'package_id': package_id}
+            )
             contents_list = [content['content'] for content in package_contents]
 
-            message = package_email_html(package_name, package_price, contents_list)
+            message = package_email_html(
+                package_name, package_price, contents_list
+            )
 
             # Send the email
             send_email(user_email, 'Payment Successful', message)
@@ -265,12 +305,18 @@ def paymentSuccess():
             return redirect('/')
 
         else:
-            flash('Something went wrong with your payment', 'paymentNotSuccessful')
+            flash(
+                'Something went wrong with your payment',
+                'paymentNotSuccessful'
+            )
             return redirect('/')
 
     except paypalrestsdk.ResourceNotFound as e:
         logging.error(e)
-        flash('Something went wrong with your payment', 'paymentNotSuccessful')
+        flash(
+            'Something went wrong with your payment',
+            'paymentNotSuccessful'
+        )
         return redirect('/')
 
 

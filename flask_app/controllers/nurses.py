@@ -32,16 +32,16 @@ def nurse_patients_cartel():
     return render_template("nurse/patients.html", patients=patients)
 
 
-@app.route("/nursePatient/<int:id>")
-def check_patient_cartel(id):
+@app.route("/nursePatient/<int:patient_id>")
+def check_patient_cartel(patient_id):
     check = check_nurse(session)
     if check:
         return check
     return render_template("nurse/patientCartel.html")
 
 
-@app.route("/nurse/colleagur")
-def nurse_colleagur():
+@app.route("/nurse/colleague")
+def nurse_colleague():
     check = check_nurse(session)
     if check:
         return check

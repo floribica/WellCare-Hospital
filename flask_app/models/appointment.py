@@ -23,13 +23,18 @@ class Appointment:
     # create a new appointment
     @classmethod
     def create_appointment(cls, data):
-        query = "INSERT INTO appointments (department, doctor, fullName, email, user_id, appointment_date, appointment_time) VALUES (%(department)s, %(doctor)s, %(fullName)s, %(email)s, %(user_id)s, %(appointment_date)s, %(appointment_time)s);"
+        query = ("INSERT INTO appointments "
+                 "(department, doctor, fullName, email,"
+                 "user_id, appointment_date, appointment_time) "
+                 "VALUES (%(department)s, %(doctor)s, %(fullName)s, %(email)s,"
+                 "%(user_id)s, %(appointment_date)s, %(appointment_time)s);")
         return connectToMySQL(cls.db_name).query_db(query, data)
 
     # check if the user already has an appointment with this doctor in same date
     @classmethod
     def check_appointment(cls, data):
-        query = "SELECT * FROM appointments WHERE user_id = %(user_id)s AND doctor = %(doctor)s;"
+        query = ("SELECT * FROM appointments "
+                 "WHERE user_id = %(user_id)s AND doctor = %(doctor)s;")
         results = connectToMySQL(cls.db_name).query_db(query, data)
         if results and results[0]['checked'] == 0:
             return False
@@ -48,7 +53,9 @@ class Appointment:
     
     @classmethod
     def get_appointment_by_user_id(cls, data):
-        query = "SELECT appointments.*, users.fullName as doc_name FROM appointments JOIN users ON appointments.doctor = users.id WHERE user_id = %(user_id)s;"
+        query = ("SELECT appointments.*, users.fullName as doc_name "
+                 "FROM appointments JOIN users ON appointments.doctor = users.id "
+                 "WHERE user_id = %(user_id)s;")
         results = connectToMySQL(cls.db_name).query_db(query, data)
         appointments = []
         for appointment in results:

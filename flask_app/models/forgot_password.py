@@ -18,12 +18,14 @@ class ForgotPassword:
 
     @classmethod
     def create_forgot_password(cls, data):
-        query = "INSERT INTO forgot_passwords (email, confirm_code,username) VALUES (%(email)s, %(confirm_code)s, %(username)s);"
+        query = ("INSERT INTO forgot_passwords (email, confirm_code,username) "
+                 "VALUES (%(email)s, %(confirm_code)s, %(username)s);")
         return connectToMySQL(cls.db_name).query_db(query, data)
 
     @classmethod
     def get_last_forgot_password_by_username(cls, data):
-        query = "SELECT * FROM forgot_passwords WHERE username = %(username)s ORDER BY id DESC LIMIT 1;"
+        query = ("SELECT * FROM forgot_passwords WHERE username = %(username)s "
+                 "ORDER BY id DESC LIMIT 1;")
         results = connectToMySQL(cls.db_name).query_db(query, data)
         if len(results) < 1:
             return False

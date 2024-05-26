@@ -39,7 +39,8 @@ class Shift:
     # add all shifts
     @classmethod
     def create_shift(cls, data):
-        query = "INSERT INTO shifts (start, end, user_id) VALUES (%(start)s, %(end)s, %(user_id)s);"
+        query = ("INSERT INTO shifts (start, end, user_id) "
+                 "VALUES (%(start)s, %(end)s, %(user_id)s);")
         return connectToMySQL(cls.db_name).query_db(query, data)
 
     # confirm shift

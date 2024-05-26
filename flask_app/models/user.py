@@ -51,7 +51,8 @@ class User:
     # create a new user
     @classmethod
     def create_user(cls, data):
-        query = "INSERT INTO users (fullName, username, email, role, password) VALUES (%(fullName)s, %(username)s, %(email)s, %(role)s, %(password)s);"
+        query = ("INSERT INTO users (fullName, username, email, role, password) "
+                 "VALUES (%(fullName)s, %(username)s, %(email)s, %(role)s, %(password)s);")
         return connectToMySQL(cls.db_name).query_db(query, data)
 
     # get all patients
@@ -147,7 +148,9 @@ class User:
     # edit user as admin
     @classmethod
     def edit_user(cls, data):
-        query = "UPDATE users SET fullName = %(fullName)s, username = %(username)s, email = %(email)s, role = %(role)s WHERE id = %(id)s;"
+        query = ("UPDATE users SET "
+                 "fullName = %(fullName)s, username = %(username)s, email = %(email)s, role = %(role)s "
+                 "WHERE id = %(id)s;")
         return connectToMySQL(cls.db_name).query_db(query, data)
 
     # delete user as admin
@@ -159,13 +162,21 @@ class User:
     # update user details
     @classmethod
     def update_user_info(cls, data):
-        query = "UPDATE users SET birthday = %(birthday)s, age = %(age)s, degree = %(degree)s, tel = %(tel)s, city = %(city)s, short_info = %(short_info)s, position = %(position)s, gender = %(gender)s WHERE id = %(id)s;"
+        query = ("UPDATE users SET "
+                 "birthday = %(birthday)s, age = %(age)s, degree = %(degree)s, "
+                 "tel = %(tel)s, city = %(city)s, short_info = %(short_info)s, "
+                 "position = %(position)s, gender = %(gender)s WHERE id = %(id)s;")
         return connectToMySQL(cls.db_name).query_db(query, data)
 
     # add users details
     @classmethod
     def create_user_info(cls, data):
-        query = "INSERT INTO users (birthday, age, degree, tel, city, short_info, position,gender) VALUES (%(birthday)s, %(age)s, %(degree)s, %(tel)s, %(city)s, %(short_info)s, %(user_id)s, %(position)s ,%(gender)s) WHERE id = %(id)s;"
+        query = ("INSERT INTO users "
+                 "(birthday, age, degree, tel, city, short_info, position,gender) "
+                 "VALUES "
+                 "(%(birthday)s, %(age)s, %(degree)s, %(tel)s, %(city)s, %(short_info)s, "
+                 "%(user_id)s, %(position)s ,%(gender)s) "
+                 "WHERE id = %(id)s;")
         return connectToMySQL(cls.db_name).query_db(query, data)
 
     # add profile picture
@@ -214,7 +225,7 @@ class User:
 
     @classmethod
     def get_doctor_by_fullName(cls, data):
-        query = "SELECT * FROM users WHERE fullName LIKE %(fullName)s and role = 'D435'; "
+        query = "SELECT * FROM users WHERE fullName LIKE %(fullName)s; "
         doctor = connectToMySQL(cls.db_name).query_db(query, data)
         users = []
         if doctor:
@@ -225,7 +236,8 @@ class User:
     # get doctor by fullName and position
     @classmethod
     def get_doctor_by_fullName_and_position(cls, data):
-        query = "SELECT * FROM users WHERE fullName LIKE  %(fullName)s AND position = %(position)s AND role = 'D435';"
+        query = ("SELECT * FROM users WHERE fullName LIKE  %(fullName)s "
+                 "AND position = %(position)s AND role = 'D435';")
         doctor = connectToMySQL(cls.db_name).query_db(query, data)
         users = []
         if doctor:

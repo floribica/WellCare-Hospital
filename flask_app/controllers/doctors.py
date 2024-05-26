@@ -10,7 +10,6 @@ from flask_app.models.testimonial import Testimonial
 from flask_app.models.user import User
 
 
-# open doctor page
 @app.route("/doctor")
 def doctor():
     check = check_doctor(session)
@@ -18,38 +17,38 @@ def doctor():
         return check
 
     user = User.get_user_by_id({"id": session['user_id']})
-    doctor = User.get_total_nr_of_doctors()
+    doctor_nr = User.get_total_nr_of_doctors()
     staff = User.get_total_nr_of_staff()
     patients = User.get_total_nr_of_patients()
     news = News.get_all_news()
-    mydoctor = User.get_doctor()
+    my_doctor = User.get_doctor()
     testimonials = Testimonial.get_all_testimonials()
 
     return render_template(
         "doctor/doctor.html",
         user=user,
-        doctor=doctor,
+        doctor=doctor_nr,
         staff=staff,
         patients=patients,
         news=news,
-        mydoctor=mydoctor,
+        mydoctor=my_doctor,
         testimonials=testimonials
     )
 
 
-# open patient cartels for the doctor
 @app.route("/patient/cartel")
 def cartel():
     check = check_doctor(session)
     if check:
         return check
     patients = User.get_all_patients()
-    return render_template("doctor/patientCartel.html", patients=patients)
+    return render_template(
+        "doctor/patientCartel.html", patients=patients
+    )
 
 
-# open patient cartel for the doctor
-@app.route("/patient/<int:id>", methods=["GET", "POST"])
-def patient_info(id):
+@app.route("/patient/<int:user_id>", methods=["GET", "POST"])
+def patient_info(user_id):
     check = check_doctor(session)
     if check:
         return check
@@ -61,7 +60,7 @@ def patient_info(id):
             "medicalReport": request.form["medicalReport"],
             "summary": request.form["summary"],
             "writer": session['user_id'],
-            "patient_id": id
+            "patient_id": user_id
         }
 
         patient_data = {
@@ -76,15 +75,18 @@ def patient_info(id):
             Patient_Cartel.insert_cartel(data)
         patient = User.get_user_by_id({"id": id})
         cartels = Patient_Cartel.get_cartel_by_id({"patient_id": id})
-        return render_template("doctor/patient_info.html", patient=patient, cartels=cartels)
+        return render_template(
+            "doctor/patient_info.html", patient=patient, cartels=cartels
+        )
     else:
         check_doctor(session)
         patient = User.get_user_by_id({"id": id})
         cartels = Patient_Cartel.get_cartel_by_id({"patient_id": id})
-        return render_template("doctor/patient_info.html", patient=patient, cartels=cartels)
+        return render_template(
+            "doctor/patient_info.html", patient=patient, cartels=cartels
+        )
 
 
-# open colleague page
 @app.route("/colleague")
 def colleague():
     check = check_doctor(session)
@@ -94,10 +96,11 @@ def colleague():
     pharmacists = User.get_all_pharmacists()
     nurses = User.get_all_nurses()
 
-    return render_template("doctor/colleague.html", doctors=doctors, pharmacists=pharmacists, nurses=nurses)
+    return render_template(
+        "doctor/colleague.html", doctors=doctors, pharmacists=pharmacists, nurses=nurses
+    )
 
 
-# open appointment page
 @app.route("/appointement")
 def appointment():
     check = check_doctor(session)
@@ -105,17 +108,18 @@ def appointment():
         return check
     appointments = Appointment.get_all_appointments({"doctor_id": session['user_id']})
     shifts = Shift.get_shift_by_user_id({"id": session['user_id']})
-    return render_template("doctor/appointment.html", appointments=appointments, shifts=shifts)
+    return render_template(
+        "doctor/appointment.html", appointments=appointments, shifts=shifts
+    )
 
 
-# confirm shift
-@app.route("/shift/<int:id>")
-def shift(id):
+@app.route("/shift/<int:user_id>")
+def shift(user_id):
     check = check_doctor(session)
     if check:
         return check
-    shift = Shift.get_shift_by_id({"id": id})
+    get_shifts = Shift.get_shift_by_id({"id": user_id})
 
-    if Shift.validate_shift(shift):
+    if Shift.validate_shift(get_shifts):
         Shift.confirm_shift({"id": id})
     return redirect("/appointement")

@@ -20,7 +20,8 @@ class Package:
     # create payment
     @classmethod
     def createPayment(cls, data):
-        query = "INSERT INTO payments (ammount, status,package_id, user_id) VALUES (%(ammount)s, %(status)s,%(package_id)s ,%(user_id)s);"
+        query = ("INSERT INTO payments (ammount, status,package_id, user_id) "
+                 "VALUES (%(ammount)s, %(status)s,%(package_id)s ,%(user_id)s);")
         return connectToMySQL(cls.db_name).query_db(query, data)
 
     # get all packages and left joing contents
@@ -65,7 +66,8 @@ class Package:
     
     @classmethod
     def get_all_patient_packages(cls, data):
-        query = "SELECT * FROM payments LEFT JOIN packages ON payments.package_id = packages.id WHERE user_id = %(user_id)s;"
+        query = ("SELECT * FROM payments LEFT JOIN packages "
+                 "ON payments.package_id = packages.id WHERE user_id = %(user_id)s;")
         results = connectToMySQL(cls.db_name).query_db(query, data)
         if results:
             return results

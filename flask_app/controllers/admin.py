@@ -20,8 +20,6 @@ from flask_app.models.user import User
 bcrypt = Bcrypt(app)
 
 load_dotenv()
-ADMINEMAIL = os.getenv("ADMINEMAIL")
-PASSWORD = os.getenv("PASSWORD")
 ROLES = {
     "a": os.getenv("ADMIN_ROLE"),
     "d": os.getenv("DOCTOR_ROLE"),
@@ -75,13 +73,13 @@ def register():
     return render_template("admin/register.html")
 
 
-@app.route("/register/<int:id>")
-def register_auto(id):
+@app.route("/register/<int:user_id>")
+def register_auto(user_id):
     check = check_admin(session)
     if check:
         return check
     context = {
-        "app_user": Application.get_application_by_id({"id": id}),
+        "app_user": Application.get_application_by_id({"id": user_id}),
         "all_users": User.get_all_users()
     }
     return render_template("admin/registerAuto.html", **context)
@@ -117,12 +115,12 @@ def register_process():
 
 
 @app.route("/forgotPassword")
-def forgotPassword():
+def forgot_password():
     return render_template("index/forgotPassword.html")
 
 
 @app.route("/forgotPassword/process", methods=["POST"])
-def forgotPassword_process():
+def forgot_password_process():
     email = request.form["email"]
     username = request.form["username"]
     data = {
@@ -142,19 +140,19 @@ def forgotPassword_process():
 
     msg = confirm_code_html(confirm_code)
     send_email(email, "Confirmation code for password reset", msg)
-    forgot_password = ForgotPassword.get_last_forgot_password_by_username(forgot_password_data)
+    get_forgot_password = ForgotPassword.get_last_forgot_password_by_username(forgot_password_data)
     if not forgot_password:
         return redirect(request.referrer)
-    return render_template("index/confirmCode.html", forgot_password=forgot_password)
+    return render_template("index/confirmCode.html", forgot_password=get_forgot_password)
 
 
 @app.route("/confirmCode_process", methods=["POST"])
-def confirmCode_process():
+def confirm_code_process():
     username = request.form["username"]
     email = request.form["email"]
     confirm_code = request.form["confirm_code"]
-    forgot_password = ForgotPassword.get_last_forgot_password_by_username({"username": username})
-    if not forgot_password or not bcrypt.check_password_hash(forgot_password["confirm_code"], confirm_code):
+    get_forgot_password = ForgotPassword.get_last_forgot_password_by_username({"username": username})
+    if not get_forgot_password or not bcrypt.check_password_hash(forgot_password["confirm_code"], confirm_code):
         return redirect(request.referrer)
     password = generate_random_string(10)
     data = {
@@ -169,26 +167,26 @@ def confirmCode_process():
     return redirect("/dashboard")
 
 
-@app.route("/view/<int:id>")
-def view(id):
+@app.route("/view/<int:user_id>")
+def view(user_id):
     check = check_admin(session)
     if check:
         return check
-    user = User.get_user_by_id({"id": id})
+    user = User.get_user_by_id({"id": user_id})
     return render_template("admin/view.html", user=user)
 
 
-@app.route("/edit/<int:id>")
-def edit(id):
+@app.route("/edit/<int:user_id>")
+def edit(user_id):
     check = check_admin(session)
     if check:
         return check
-    user = User.get_user_by_id({"id": id})
+    user = User.get_user_by_id({"id": user_id})
     return render_template("admin/edit.html", user=user)
 
 
-@app.route("/edit/process/<int:id>", methods=["POST"])
-def edit_process(id):
+@app.route("/edit/process/<int:user_id>", methods=["POST"])
+def edit_process(user_id):
     check = check_admin(session)
     if check:
         return check
@@ -196,7 +194,7 @@ def edit_process(id):
         return redirect(request.referrer)
 
     data = {
-        "id": id,
+        "id": user_id,
         "fullName": request.form["fullName"],
         "username": request.form["username"],
         "email": request.form["email"],
@@ -206,17 +204,17 @@ def edit_process(id):
     return redirect("/")
 
 
-@app.route("/delete/<int:id>")
-def delete(id):
+@app.route("/delete/<int:user_id>")
+def delete(user_id):
     check = check_admin(session)
     if check:
         return check
-    User.delete_user({"id": id})
+    User.delete_user({"id": user_id})
     return redirect("/")
 
 
 @app.route("/shownews")
-def shownews():
+def show_news():
     check = check_admin(session)
     if check:
         return check

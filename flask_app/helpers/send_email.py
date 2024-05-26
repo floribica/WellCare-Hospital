@@ -97,14 +97,22 @@ def package_email_html(package_name, package_price, contents_list):
             <body>
                 <div class="container payment-confirmation">
                     <h2>Thank you for your payment!</h2>
-                    <p>You have successfully purchased the <span class="highlight price">{package_name}</span> package for <span class="price">${package_price} </span>.</p>
+                    <p>You have successfully purchased the 
+                        <span class="highlight price">{package_name}</span> 
+                        package for <span class="price">${package_price} </span>.
+                    </p>
                     <p><strong>Here are the contents of the package:</strong></p>
                     <ul>
                         {''.join(f'<li>{content}</li>' for content in contents_list)}
                     </ul>
-                    <p>We hope you enjoy your purchase! Feel free to explore our <a href="/special-offers" class="special-offers-link">special offers</a> for more exclusive deals.</p>
+                    <p>We hope you enjoy your purchase! Feel free to explore our 
+                        <a href="/special-offers" class="special-offers-link">special offers</a> 
+                        for more exclusive deals.
+                    </p>
                     <div class="footer">
-                        <p>If you have any questions or need assistance, please contact our friendly support team at <a href="flori.bica@fti.edu.al" class="support-email">flori.bica@fti.edu.al</a>.</p>
+                        <p>If you have any questions or need assistance, please contact our friendly support team at 
+                            <a href="flori.bica@fti.edu.al" class="support-email">flori.bica@fti.edu.al</a>.
+                        </p>
                     </div>
                 </div>
             </body>
@@ -345,6 +353,72 @@ def reset_password_html(username, password):
                     </div>
                     <div class="footer">
                     <p>This email was sent automatically. Please do not reply.</p>
+                    </div>
+            </div>
+    </body>
+    </html>
+    """
+
+
+def get_appointment_email_html(
+    patient_name, appointment_date, appointment_time, doctor_name
+):
+    return f"""
+   <html>
+    <head>
+            <style>
+                    body {{
+                            font-family: Arial, sans-serif;
+                            color: #333;
+                            line-height: 1.6;
+                    }}
+                    .container {{
+                            padding: 20px;
+                            border: 1px solid #ddd;
+                            border-radius: 8px;
+                            background-color: #f5f5f5;
+                            width: 80%;
+                            margin: auto;
+                    }}
+                    .header {{
+                            background-color: #4CAF50;
+                            color: white;
+                            padding: 10px;
+                            text-align: center;
+                            border-radius: 8px 8px 0 0;
+                    }}
+                    .content {{
+                            padding: 20px;
+                    }}
+                    .highlight {{
+                            background-color: #f9f9f9;
+                    }}
+                    .footer {{
+                            margin-top: 20px;
+                            font-size: 0.9em;
+                            color: #777;
+                    }}
+            </style>
+    </head>
+    <body>
+            <div class="container">
+                    <div class="header">
+                            <h1>Welcome to WellCare Hospital</h1>
+                    </div>
+                    <div class="content">
+                            <p>Hello <strong>{patient_name}</strong> and Dr. <strong>{doctor_name}</strong>,</p>
+                            <p>We are pleased to confirm that an appointment has been scheduled as follows:</p>
+                            <p class="highlight"><strong>Date:</strong> {appointment_date}</p>
+                            <p><strong>Time:</strong> {appointment_time}</p>
+                            <p><strong>Patient:</strong> {patient_name}</p>
+                            <p><strong>Doctor:</strong> {doctor_name}</p>
+                            <p>For the patient, please ensure you arrive at least 15 minutes before your appointment time to complete any necessary paperwork and prepare for your visit.</p>
+                            <p>If either party has any questions or needs to reschedule, please contact our office at your earliest convenience.</p>
+                            <p>Best regards,</p>
+                            <p><em>WellCare Hospital</em></p>
+                    </div>
+                    <div class="footer">
+                            <p>This email was sent automatically. Please do not reply.</p>
                     </div>
             </div>
     </body>

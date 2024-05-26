@@ -32,7 +32,8 @@ class News:
     # add news
     @classmethod
     def add_news(cls, data):
-        query = "INSERT INTO news (title, description, link, image) VALUES (%(title)s, %(description)s, %(link)s, %(image)s);"
+        query = ("INSERT INTO news (title, description, link, image) "
+                 "VALUES (%(title)s, %(description)s, %(link)s, %(image)s);")
         return connectToMySQL(cls.db_name).query_db(query, data)
 
     # delete news
@@ -53,5 +54,7 @@ class News:
     # edit news
     @classmethod
     def update_news(cls, data):
-        query = "UPDATE news SET title = %(title)s, description = %(description)s, link = %(link)s WHERE id = %(id)s;"
+        query = ("UPDATE news "
+                 "SET title = %(title)s, description = %(description)s, link = %(link)s "
+                 "WHERE id = %(id)s;")
         return connectToMySQL(cls.db_name).query_db(query, data)

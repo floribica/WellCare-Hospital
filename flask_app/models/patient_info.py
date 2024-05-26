@@ -24,7 +24,9 @@ class Patient_Cartel:
 
     @classmethod
     def get_cartel_by_id(cls, data):
-        query = "SELECT patient_cartels.*, users.fullName FROM patient_cartels LEFT JOIN users ON patient_cartels.writer = users.id WHERE patient_id = %(patient_id)s;"
+        query = ("SELECT patient_cartels.*, users.fullName FROM patient_cartels "
+                 "LEFT JOIN users ON patient_cartels.writer = users.id "
+                 "WHERE patient_id = %(patient_id)s;")
         results = connectToMySQL(cls.db_name).query_db(query, data)
         cartels = []
         for cartel in results:
@@ -33,7 +35,10 @@ class Patient_Cartel:
 
     @classmethod
     def insert_cartel(cls, data):
-        query = "INSERT INTO patient_cartels (examinate, treatment, medicalReport, summary, writer, patient_id) VALUES (%(examinate)s, %(treatment)s, %(medicalReport)s, %(summary)s, %(writer)s, %(patient_id)s);"
+        query = ("INSERT INTO patient_cartels "
+                 "(examinate, treatment, medicalReport, summary, writer, patient_id) "
+                 "VALUES "
+                 "(%(examinate)s, %(treatment)s, %(medicalReport)s, %(summary)s, %(writer)s, %(patient_id)s);")
         return connectToMySQL(DB_NAME).query_db(query, data)
 
     @staticmethod

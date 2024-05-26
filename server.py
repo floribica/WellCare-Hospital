@@ -8,7 +8,6 @@ from flask_app.controllers import (
     admin,
     doctors,
     nurses,
-    shifts,
     patients,
     applications,
     testimonials,

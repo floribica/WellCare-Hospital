@@ -33,7 +33,9 @@ def dashboard():
     doctor = User.get_total_nr_of_doctors()
     patient = User.get_total_nr_of_patients()
     news = News.get_all_news()
-    return render_template("index/index.html", doctor=doctor, patient=patient, news=news)
+    return render_template(
+        "index/index.html", doctor=doctor, patient=patient, news=news
+    )
 
 
 # check if I have a user in session and redirect to the correct page
@@ -185,7 +187,9 @@ def add_photo():
         if image.filename != '':
 
             # check if the file is allowed by ALLOWED_EXTENSIONS
-            if image and '.' in image.filename and image.filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS:
+            if (image and '.' in image.filename
+                    and image.filename.rsplit('.', 1)[1].lower()
+                    in ALLOWED_EXTENSIONS):
                 # add current timi in the file name
                 filename = secure_filename(image.filename)
                 filename = str(datetime.now().timestamp()) + filename
@@ -199,20 +203,20 @@ def add_photo():
 
 
 # show profile of a user
-@app.route("/profile/<int:id>")
-def showProfile(id):
+@app.route("/profile/<int:user_id>")
+def show_profile(user_id):
     if "user_id" not in session:
         return redirect("/check")
-    user = User.get_user_by_id({"id": id})
+    user = User.get_user_by_id({"id": user_id})
     return render_template("index/showprofile.html", user=user)
 
 
 # reset password
-@app.route("/reset/<int:id>")
-def reset(id):
+@app.route("/reset/<int:user_id>")
+def reset(user_id):
     if "user_id" not in session:
         return redirect("/check")
-    user = User.get_user_by_id({"id": id})
+    user = User.get_user_by_id({"id": user_id})
     return render_template("index/reset.html", user=user)
 
 
