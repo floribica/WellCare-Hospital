@@ -96,10 +96,10 @@
                                     <td>{{ appointement.email }}</td>
                                     <td>
                                         <a href="/appointement/{{ appointement.id }}" class="btn btn-sm btn-primary">View</a>
-                                        <a href="/appointement/{{ appointement.id }}/edit"
+                                        <a href="/edit_appointement/{{ appointement.id }}"
                                            class="btn btn-sm btn-warning">Edit</a>
-                                        <a href="/appointement/{{ appointement.id }}/delete"
-                                           class="btn btn-sm btn-danger">Delete</a>
+                                        <a onclick="cancel()" href="/cancel_appointement/{{ appointement.id }}"
+                                           class="btn btn-sm btn-danger">Cancel</a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -189,6 +189,16 @@
 
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+<script>
+    function cancel(event) {
+        if (!confirm('Are you sure you want to cancel this appointment?')) {
+            event.preventDefault();
+            return false;
+        }
+        return true;
+    }
+</script>
 
 
 <!-- JavaScript Libraries -->

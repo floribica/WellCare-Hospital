@@ -61,8 +61,6 @@ def index():
             return redirect("/doctor")
         elif user['role'] == NURSE_ROLE:
             return redirect("/nurse")
-        elif user['role'] == PHARMACIST_ROLE:
-            return redirect("/pharmacist")
     session.clear()
     return redirect(request.referrer)
 
@@ -164,11 +162,9 @@ def page_not_found(e):
     if user['role'] == DOCTOR_ROLE:
         return render_template('doctor/404_doctor.html')
     elif user['role'] == NURSE_ROLE:
-        return render_template('404_nurse.html')
+        return render_template('nurse/404_nurse.html')
     elif user['role'] == PATIENT_ROLE:
         return render_template('patient/404_patient.html')
-    elif user['role'] == PHARMACIST_ROLE:
-        return render_template('404_pharmacist.html')
     elif user['role'] == ADMIN_ROLE:
         return render_template('admin/404.html')
 

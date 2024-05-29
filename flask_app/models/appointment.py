@@ -1,3 +1,4 @@
+from datetime import datetime
 import os
 
 from dotenv import load_dotenv
@@ -62,7 +63,21 @@ class Appointment:
             appointments.append(appointment)
         return appointments
 
-    # validate appointment
+
+    @classmethod
+    def get_appointment_by_id(cls, data):
+        query = ("SELECT * FROM appointments WHERE id = %(id)s;")
+        return connectToMySQL(cls.db_name).query_db(query, data)
+    
+    
+    @classmethod
+    def update_appointment_datetime(cls, data):
+        query = ("UPDATE appointments "
+                 "SET appointment_date = %(date)s, appointment_time = %(time)s "
+                 "WHERE id = %(appointment_id)s;")
+        connectToMySQL(cls.db_name).query_db(query, data)
+    
+    
     @staticmethod
     def validate_appointment(data):
 
@@ -79,6 +94,25 @@ class Appointment:
             is_valid = False
         if len(data['email']) < 8:
             flash("Email is required", "email")
+            is_valid = False
+
+        return is_valid
+    
+    
+    @classmethod
+    def cancel_appointment(cls, data):
+        query = "DELETE FROM appointments WHERE id = %(id)s;"
+        connectToMySQL(cls.db_name).query_db(query, data)
+    
+    
+    @staticmethod
+    def validate_date_time(data):
+        is_valid = True
+        current_date = datetime.now().date()
+        new_date = datetime.strptime(data['date'], "%Y-%m-%d").date()
+        
+        if new_date < current_date:
+            flash("Appointment date is in the past", "date")
             is_valid = False
 
         return is_valid

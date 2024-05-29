@@ -329,3 +329,13 @@ def paymentCancel():
 
     flash('Payment was canceled', 'paymentCanceled')
     return redirect('/')
+
+
+@app.route("/cancel_appointement_patient/<int:appointment_id>")
+def cancel_appointment_patient(appointment_id):
+    check = check_patient(session)
+    if check:
+        return check
+    Appointment.cancel_appointment({"id": appointment_id})
+    return redirect("/appointment_view")
+

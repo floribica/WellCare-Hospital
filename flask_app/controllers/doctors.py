@@ -93,11 +93,10 @@ def colleague():
     if check:
         return check
     doctors = User.get_all_doctors()
-    pharmacists = User.get_all_pharmacists()
     nurses = User.get_all_nurses()
 
     return render_template(
-        "doctor/colleague.html", doctors=doctors, pharmacists=pharmacists, nurses=nurses
+        "doctor/colleague.html", doctors=doctors, nurses=nurses
     )
 
 
@@ -123,3 +122,50 @@ def shift(user_id):
     if Shift.validate_shift(get_shifts):
         Shift.confirm_shift({"id": id})
     return redirect("/appointement")
+
+
+@app.route("/appointement/<int:appointment_id>")
+def view_appointment(appointment_id):
+    check = check_doctor(session)
+    if check:
+        return check
+    appointments = Appointment.get_appointment_by_id({"id": appointment_id})
+    return render_template(
+        "doctor/view_appointment.html", appointments=appointments
+    )
+
+
+@app.route("/edit_appointement/<int:appointment_id>")
+def edit_appointment(appointment_id):
+    check = check_doctor(session)
+    if check:
+        return check
+    appointments = Appointment.get_appointment_by_id({"id": appointment_id})
+    return render_template(
+        "doctor/edit_appointment.html", appointments=appointments
+    )
+
+
+@app.route("/edit_appointment_datetime/<int:appointment_id>", methods=["POST"])
+def edit_appointment_datetime(appointment_id):
+    check = check_doctor(session)
+    if check:
+        return check
+    data = {
+        "appointment_id": appointment_id,
+        "date": request.form["date"],
+        "time": request.form["time"]
+    }
+    if Appointment.validate_date_time(data):
+        Appointment.update_appointment_datetime(data)
+    return redirect("/appointement")
+
+
+@app.route("/cancel_appointement/<int:appointment_id>")
+def cancel_appointment(appointment_id):
+    check = check_doctor(session)
+    if check:
+        return check
+    Appointment.cancel_appointment({"id": appointment_id})
+    return redirect("/appointement")
+

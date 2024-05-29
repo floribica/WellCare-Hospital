@@ -1,0 +1,154 @@
+.card {
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
+    background-color: #F8FBFE;
+    border-radius: 8px;
+    z-index: 1;
+    text-align: center;
+}
+   
+.tools {
+    display: flex;
+    align-items: center;
+    padding: 9px;
+}
+   
+.circle {
+    padding: 0 4px;
+}
+
+.box {
+    display: inline-block;
+    align-items: center;
+    width: 10px;
+    height: 10px;
+    padding: 1px;
+    border-radius: 50%;
+}
+
+.red {
+    background-color: #ff605c;
+}
+
+.yellow {
+    background-color: #ffbd44;
+}
+
+.green {
+    background-color: #00ca4e;
+}
+
+.card__content {
+    padding: 0 10px;
+    margin-top: 10px;
+    padding-bottom: 10%;
+}
+
+.card__content__item {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+}
+
+.name{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    font-size: xx-large;
+}
+
+label{
+    margin: auto 2% auto 0;
+}
+
+.datetime{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    font-size: large;
+}
+
+.email{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    font-size: large;
+}
+
+form .date{
+    display: flex;
+    justify-content: center;
+    margin: 2% auto;
+    font-size: larger;
+}
+
+form .date input{
+    margin: 0 2%;
+}
+
+.input {
+    line-height: 28px;
+    border: 2px solid transparent;
+    border-bottom-color: #777;
+    padding: .2rem 0;
+    outline: none;
+    background-color: transparent;
+    color: #0d0c22;
+    transition: .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.input:focus, input:hover {
+    outline: none;
+    padding: .2rem 1rem;
+    border-radius: 1rem;
+    border-color: #7a9cc6;
+}
+
+.input::placeholder {
+    color: #777;
+}
+
+.input:focus::placeholder {
+    opacity: 0;
+    transition: opacity .3s;
+}   
+
+button {
+    margin-top: 5%;
+    width: 9em;
+    height: 3em;
+    border-radius: 30em;
+    font-size: 15px;
+    font-family: inherit;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 6px 6px 12px #c5c5c5,
+                -6px -6px 12px #ffffff;
+}
+   
+button::before {
+    content: '';
+    width: 0;
+    height: 3em;
+    border-radius: 30em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to right, #0fd850 0%, #f9f047 100%);
+    transition: .5s ease;
+    display: block;
+    z-index: -1;
+}
+   
+button:hover::before {
+    width: 9em;
+}
+
+a {
+    text-decoration: none;
+    color: #0d0c22;
+}
