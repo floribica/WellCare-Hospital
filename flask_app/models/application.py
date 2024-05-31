@@ -24,93 +24,64 @@ class Application:
     # create application
     @classmethod
     def create_application(cls, data):
-
         query = ("INSERT INTO applications (fullName, email, role) "
                  "VALUES (%(fullName)s, %(email)s, %(role)s);")
-
         return connectToMySQL(cls.db_name).query_db(query, data)
 
     # get all applications that are not checked
     @classmethod
     def get_all_applications(cls):
-
         query = "SELECT * FROM applications WHERE checked = 0;"
-
         results = connectToMySQL(cls.db_name).query_db(query)
-
         applications = []
-
         for application in results:
             applications.append(cls(application))
-
         return applications
 
     # get all applications
     @classmethod
     def total_applications(cls):
-
         query = "SELECT * FROM applications;"
-
         results = connectToMySQL(cls.db_name).query_db(query)
-
         applications = []
-
         for application in results:
             applications.append(cls(application))
-
         return applications
 
     # get applications count
     @classmethod
     def get_applications_count(cls):
-
         query = "SELECT COUNT(*) as total FROM applications WHERE checked = 0;"
-
         results = connectToMySQL(cls.db_name).query_db(query)
-
         application = 0
-
         if results:
             application = results[0]
-
         return application
 
     # get all applications for email that are checked
     @classmethod
     def get_application_by_email(cls, data):
-
         query = "SELECT * FROM applications WHERE email = %(email)s and checked = 0;"
-
         results = connectToMySQL(cls.db_name).query_db(query, data)
-
         application = None
-
         if results:
             application = results[0]
-
         return application
 
     # update checked
     @classmethod
     def update_checked(cls, data):
-
         query = "UPDATE applications SET checked = 1 WHERE id = %(id)s;"
-
         return connectToMySQL(cls.db_name).query_db(query, data)
 
     # delete application
     @classmethod
     def get_application_by_id(cls, data):
-
         query = "SELECT * FROM applications WHERE id = %(id)s;"
-
         results = connectToMySQL(cls.db_name).query_db(query, data)
-
         application = []
-
         if results:
             application = results[0]
-
         return application
 
     # validate application

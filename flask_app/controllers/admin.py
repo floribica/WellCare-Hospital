@@ -1,8 +1,10 @@
 import os
 
 from dotenv import load_dotenv
-from flask import render_template, request, session, redirect
+from flask import flash, render_template, request, session, redirect
 from flask_bcrypt import Bcrypt
+import pandas as pd
+import openpyxl
 
 from flask_app import app
 from flask_app.controllers.check_user import check_admin
@@ -15,6 +17,7 @@ from flask_app.helpers.send_email import (
 from flask_app.models.application import Application
 from flask_app.models.forgot_password import ForgotPassword
 from flask_app.models.news import News
+from flask_app.models.shift import Shift
 from flask_app.models.user import User
 
 bcrypt = Bcrypt(app)
@@ -103,6 +106,12 @@ def register_process():
         "password": bcrypt.generate_password_hash(password)
     }
     User.create_user(data)
+    application = Application.get_application_by_email(
+        {"email": request.form["email"]}
+    )
+    Application.update_checked(
+        {"id": application["id"]}
+    )
 
     full_name = request.form['fullName']
     username = request.form['username']
@@ -227,3 +236,24 @@ def show_news():
         news=news,
         applications_count=applications_count
     )
+
+
+@app.route("/addshifts", methods=["POST"])
+def add_shift():
+    check = check_admin(session)
+    if check:
+        return check
+    
+    if 'shifts' not in request.files:
+        return redirect(request.referrer)
+    
+    shifts_file = request.files['shifts']
+    if shifts_file.filename == '':
+        return redirect(request.referrer)
+    
+    if shifts_file and shifts_file.filename.endswith('.xlsx'):
+        df = pd.read_excel(shifts_file)
+        Shift.save_shifts_from_excel(df)
+        flash('File successfully uploaded and data saved to database', "add_shifts")
+    
+    return redirect("/")

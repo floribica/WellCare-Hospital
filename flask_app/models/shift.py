@@ -15,8 +15,9 @@ class Shift:
 
     def __init__(self, data):
         self.id = data['id']
+        self.start = data['start']
+        self.end = data['end']
         self.date = data['date']
-        self.time = data['time']
         self.user_id = data['user_id']
 
     # get all shifts
@@ -39,8 +40,8 @@ class Shift:
     # add all shifts
     @classmethod
     def create_shift(cls, data):
-        query = ("INSERT INTO shifts (start, end, user_id) "
-                 "VALUES (%(start)s, %(end)s, %(user_id)s);")
+        query = ("INSERT INTO shifts (start, end, date, user_id) "
+                 "VALUES (%(start)s, %(end)s, %(date)s, %(user_id)s);")
         return connectToMySQL(cls.db_name).query_db(query, data)
 
     # confirm shift
@@ -48,6 +49,18 @@ class Shift:
     def confirm_shift(cls, data):
         query = "UPDATE shifts SET done = 1 WHERE id = %(id)s;"
         return connectToMySQL(cls.db_name).query_db(query, data)
+    
+    @classmethod
+    def save_shifts_from_excel(cls, df):
+        for _, row in df.iterrows():
+            shift_data = {
+                "start": row['start'],
+                "end": row['end'],
+                "date": row['date'],
+                "user_id": row['user_id']
+            }
+            cls.create_shift(shift_data)
+    
 
     @staticmethod
     def validate_shift(data):

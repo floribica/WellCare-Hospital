@@ -245,4 +245,17 @@ ul#filters {
 	}
 	
 
-    
+    .excel-file{
+        display: flex;
+        justify-content: space-between;
+        padding: 2%;
+        margin: auto;
+    }
+    .excel-file div{
+        display: flex;
+        margin: auto 0;
+    }
+
+    .excel-file div label{
+        margin: auto 10px auto 0;
+    }
