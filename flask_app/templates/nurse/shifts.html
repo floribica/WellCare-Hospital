@@ -76,10 +76,10 @@
           <li class="nav-item">
             <a class="nav-link" href="/nurse/patient">Patients</a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="/nurse/colleague">Colleague</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="/nurse/shifts">Shifts</a>
           </li>
           <li class="nav-item">
@@ -88,39 +88,62 @@
         </ul>
       </div>
     </nav>ˇ
+    <!-- navbar end -->
 
-    <!--staff in Team Start -->
-    <div class="container-xxl py-5">
-      <div class="container">
-          <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-              <h1>Our Experience Staff</h1>
-          </div>
-          <div class="row g-4">
-              {% for stff in staff %}
-                  <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                      <div class="team-item position-relative rounded overflow-hidden">
-                          <div class="overflow-hidden">
-                              {% if stff.image == None %}
-                                  <img class="img-fluid" id="img-fix" src="../static/img/profilephoto.webp" alt="">
-                              {% else %}
-                                  <img class="img-fluid" id="img-fix" src="../static/img/{{ stff.image }}" alt="">
-                              {% endif %}
-                          </div>
-                          <div class="team-text bg-light text-center p-4">
-                              <a href="/profile/{{ stff.id }}"><h5>{{ stff.fullName }}</h5></a>
-                              {% if stff.position %}
-                                  <p class="text-primary">{{ stff.position }}</p>
-                              {% else %}
-                                  <p class="text-primary">New Member</p>
-                              {% endif %}
-                          </div>
+    <div class="container">
+      <div class="row">
+          <div class="col-lg-12">
+              <div class="card border-0 shadow mt-4">
+                  <div class="card-header bg-white">
+                      <h1 class="m-0 text-center fs-1">Shifts</h1>
+                  </div>
+                  <div class="card-body">
+                      <div class="table-responsive">
+                          <table class="table table-hover table-bordered">
+                              <thead>
+                              <tr>
+                                  <th scope="col">Date</th>
+                                  <th scope="col">Start Time</th>
+                                  <th scope="col">End Time</th>
+                                  <th scope="col">Shift</th>
+                                  <th scope="col">Done</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              {% for shift in shifts %}
+                                  <tr>
+                                      <td>{{ shift.date }}</td>
+                                      <td>{{ shift.start }}</td>
+                                      <td>{{ shift.end }}</td>
+                                      <td>
+                                          {% if shift.done == 0 %}
+                                              <span class="badge bg-danger">Not Done</span>
+                                          {% else %}
+                                              <span class="badge bg-success">Done</span>
+                                          {% endif %}
+                                      </td>
+                                      <td>
+                                          <a href="/shift/{{ shift.id }}" class="btn btn-sm btn-primary">Done</a>
+                                      </td>
+                                  </tr>
+                                  </tbody>
+                              {% endfor %}
+                              {% with messages = get_flashed_messages(category_filter=["shift"]) %}
+                                  {% if messages %}
+  
+                                      {% for message in messages %}
+                                          <p class="text-danger text-center">{{ message }}</p>
+                                      {% endfor %}
+  
+                                  {% endif %}
+                              {% endwith %}
+                          </table>
                       </div>
                   </div>
-              {% endfor %}
+              </div>
           </div>
-      </div>
+        </div>
     </div>
-    <!--staff in Team End -->
 
     <!-- footer section start -->
     <div class="footer_section layout_padding">

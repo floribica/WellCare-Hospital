@@ -95,6 +95,16 @@ class User:
             patients = results[0]
         return patients
 
+    # get all staff
+    @classmethod
+    def get_all_staff(cls):
+        query = "SELECT * FROM users WHERE role != 'P493' AND role != 'A555';"
+        results = connectToMySQL(cls.db_name).query_db(query)
+        staff = []
+        for user in results:
+            staff.append(user)
+        return staff
+
     # get only 4 doctors
     @classmethod
     def get_doctor(cls):

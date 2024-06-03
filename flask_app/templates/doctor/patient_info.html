@@ -105,8 +105,47 @@
         </div>
     </div>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card border-0 shadow mt-4">
+                    <div class="card-header bg-white">
+                        <h5 class="m-0 text-center fs-1">Nurses Reports</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Temperature</th>
+                                        <th scope="col">Blood Pressure</th>
+                                        <th scope="col">Heart Rate</th>
+                                        <th scope="col">Notes</th>
+                                        <th scope="col">Nurse</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for nurse_report in nurse_reports %}
+                                    <tr>
+                                        <td>{{nurse_report.created_at}}</td>
+                                        <td>{{nurse_report.temperature}}</td>
+                                        <td>{{nurse_report.blood_pressure}}</td>
+                                        <td>{{nurse_report.heart_rate}}</td>
+                                        <td>{{nurse_report.notes}}</td>
+                                        <td>{{nurse_report.fullName}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <form class="m-0" action="/patient/{{patient.id}}" method="post">
+    <form class="m-0" action="/nurse_patient/{{patient.id}}" method="post">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">

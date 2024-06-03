@@ -4,6 +4,7 @@ from flask_app import app
 from flask_app.controllers.check_user import check_doctor
 from flask_app.models.appointment import Appointment
 from flask_app.models.news import News
+from flask_app.models.nurse_treatments import Nurse_treatments
 from flask_app.models.patient_info import Patient_Cartel
 from flask_app.models.shift import Shift
 from flask_app.models.testimonial import Testimonial
@@ -64,7 +65,7 @@ def patient_info(user_id):
         }
 
         patient_data = {
-            "patient_id": id,
+            "patient_id": user_id,
             "age": request.form["age"],
             "gender": request.form["gender"]
         }
@@ -73,17 +74,25 @@ def patient_info(user_id):
 
         if Patient_Cartel.validate_cartel(data):
             Patient_Cartel.insert_cartel(data)
-        patient = User.get_user_by_id({"id": id})
-        cartels = Patient_Cartel.get_cartel_by_id({"patient_id": id})
+        patient = User.get_user_by_id({"id": user_id})
+        cartels = Patient_Cartel.get_cartel_by_id({"patient_id": user_id})
+        nurse_reports = Nurse_treatments.get_cartel_by_id({"patient_id": user_id})
         return render_template(
-            "doctor/patient_info.html", patient=patient, cartels=cartels
+            "doctor/patient_info.html",
+            patient=patient,
+            cartels=cartels,
+            nurse_reports=nurse_reports
         )
     else:
         check_doctor(session)
-        patient = User.get_user_by_id({"id": id})
-        cartels = Patient_Cartel.get_cartel_by_id({"patient_id": id})
+        patient = User.get_user_by_id({"id": user_id})
+        cartels = Patient_Cartel.get_cartel_by_id({"patient_id": user_id})
+        nurse_reports = Nurse_treatments.get_cartel_by_id({"patient_id": user_id})
         return render_template(
-            "doctor/patient_info.html", patient=patient, cartels=cartels
+            "doctor/patient_info.html",
+            patient=patient,
+            cartels=cartels,
+            nurse_reports=nurse_reports
         )
 
 
