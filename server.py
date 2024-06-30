@@ -20,4 +20,4 @@ HOST = os.getenv('HOST')
 PORT = os.getenv('PORT')
 
 if __name__ == '__main__':
-    app.run(debug=True, host=HOST, port=PORT)
+    app.run(debug=False, host=HOST, port=PORT)
